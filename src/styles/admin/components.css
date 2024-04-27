@@ -1,0 +1,25 @@
+#AdminLayout {
+  /* 
+  GRAVATAR
+   */
+  .gravatar {
+    @apply text-sm size-8 flex justify-center items-center rounded-2xl;
+    background-color: var(--color-primary);
+    color: var(--color-white);
+  }
+
+  /* 
+   CARD
+    */
+  .card {
+    @apply bg-white border-2 border-slate-200;
+  }
+
+  .card-header {
+    @apply p-4 border-b-2 border-slate-200;
+  }
+
+  .card-body {
+    @apply p-4;
+  }
+}

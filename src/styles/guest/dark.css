@@ -1,0 +1,19 @@
+html[data-theme="dark"] {
+  #GuestLayout {
+    header {
+      @apply bg-black;
+    }
+
+    #section-about {
+      @apply bg-black;
+    }
+
+    #section-header {
+      @apply bg-black;
+    }
+
+    #section-service {
+      @apply bg-black py-14;
+    }
+  }
+}

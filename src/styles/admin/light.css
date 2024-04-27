@@ -1,0 +1,281 @@
+:root {
+  /**
+   *
+   *
+   *
+   * VARIABLE
+   */
+  --sidebar-size: 18rem;
+}
+
+@import url(./components.css);
+
+/**
+ *
+ *
+ *
+ * CONTENT 
+ */
+
+html {
+  @apply bg-black text-black;
+  height: 100%;
+  font-family: "Poppins", sans-serif;
+
+  #AdminLayout.wrapper {
+    @apply mx-auto;
+    background-image: url(/images/admin/background.svg);
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+
+  #AdminLayout {
+    .wrapper-content {
+      @apply flex overflow-hidden;
+    }
+
+    .container-fluid {
+      @apply grow overflow-auto relative;
+      @apply ml-[100vw] sm:ml-[var(--sidebar-size)];
+      transition: all 0.3s ease;
+    }
+
+    .wrapper-content:has(#sidebar-wrapper.sidebar-collapse)>.container-fluid {
+      @apply m-0 md:ml-14;
+    }
+
+    /**
+     *
+     *
+     *
+     * SIDEBAR 
+     */
+    #sidebar-wrapper {
+      @apply fixed h-full min-h-screen z-[10] border-r overflow-auto pb-8 bg-sidebar border-gray-700;
+      /* @apply lg:relative; */
+      @apply w-[100vw] sm:w-[var(--sidebar-size)];
+      transition: all 0.3s ease;
+      /* background: var(--color-primary);
+      background: linear-gradient(120deg, var(--color-primary) 58%, var(--color-accent) 100%); */
+      color: var(--color-black);
+    }
+
+    #sidebar-wrapper.sidebar-collapse {
+      @apply w-0 border-0 m-0;
+      @apply md:w-14;
+    }
+
+    .sidebar-brand {
+      @apply text-2xl text-center p-5 mb-4;
+      font-family: "Poppins", serif;
+    }
+
+    .sidebar-items {
+      @apply p-5 m-1;
+    }
+
+    .sidebar-items hr {
+      @apply my-3 border-gray-600;
+    }
+
+    #sidebar-wrapper.sidebar-collapse .sidebar-items hr {
+      @apply hidden;
+    }
+
+    #sidebar-wrapper.sidebar-collapse .sidebar-items {
+      @apply p-0 m-1;
+    }
+
+    .sidebar-menu,
+    .sidebar-dropdown {
+      @apply my-2 p-0;
+    }
+
+    .sidebar-menu img {
+      @apply w-[24px] h-auto mr-4;
+    }
+
+    #sidebar-wrapper.sidebar-collapse .sidebar-menu img {
+      @apply mr-0;
+    }
+
+    .sidebar-menu a,
+    .sidebar-dropdown a {
+      @apply flex items-center p-1 md:p-3 md:pl-1 rounded-md text-white font-bold text-base md:text-[14px] uppercase;
+      transition: all 0.2s ease;
+    }
+
+    #sidebar-wrapper.sidebar-collapse .sidebar-menu a ,
+    #sidebar-wrapper.sidebar-collapse .sidebar-dropdown a  {
+      @apply justify-center px-0;
+    }
+
+    #sidebar-wrapper.sidebar-collapse .sidebar-menu a span,
+    #sidebar-wrapper.sidebar-collapse .sidebar-dropdown a span {
+      @apply hidden;
+    }
+
+    .sidebar-link {
+      @apply text-white p-1 text-sm block;
+    }
+
+    #sidebar-wrapper.sidebar-collapse .sidebar-link {
+      @apply hidden;
+    }
+
+    .sidebar-copyright {
+      @apply text-white mt-5 text-sm block;
+    }
+
+    #sidebar-wrapper.sidebar-collapse .sidebar-copyright {
+      @apply hidden;
+    }
+
+    .sidebar-menu a:hover,
+    .sidebar-dropdown a:hover {
+      @apply flex items-center p-3;
+      background-color: var(--color-primary);
+      color: var(--color-white);
+    }
+
+    .sidebar-menu a:hover span,
+    .sidebar-dropdown a:hover span {
+      color: var(--color-white);
+    }
+
+    .sidebar-menu a span,
+    .sidebar-dropdown a span {
+      @apply pr-3;
+    }
+
+    .sidebar-dropdown>a>span:last-child {
+      position: absolute;
+      right: 0;
+    }
+
+    .sidebar-dropdown.active .sidebar-dropdown-items {
+      @apply visible h-auto;
+    }
+
+    .sidebar-dropdown-items {
+      @apply invisible h-0;
+    }
+
+    .sidebar-title {
+      @apply mr-6 ml-6 mb-0 pt-2 pb-2 text-white;
+      font-weight: bold;
+    }
+
+    .sidebar-close-button {
+      @apply absolute top-5 right-5 text-white;
+      @apply md:hidden;
+    }
+
+    /**
+     *
+     *
+     *
+     *
+     * HEADER
+     */
+
+    .header {
+      @apply flex bg-black justify-between items-center p-5;
+    }
+
+    .header-right-item,
+    .header-left-item {
+      @apply flex gap-5 justify-center items-center relative;
+    }
+
+    .header-icon {
+      @apply justify-between items-center text-white;
+    }
+
+    .header-profile-button {
+      @apply flex items-center gap-2;
+    }
+
+    .header-profile-button span {
+      @apply hidden md:block text-white;
+    }
+
+    #header-modal-menu {
+      @apply absolute top-[200%] right-[.5rem] z-10 shadow p-0 bg-black min-w-[200px] text-white border-gray-500 border-[1px];
+      @apply hidden;
+      transition: cubic-bezier(0.39, 0.575, 0.565, 1) 0.2s;
+    }
+
+    #header-modal-menu.active {
+      @apply block;
+    }
+
+    /**
+     *
+     * BREADCRUMB
+     */
+    .breadcrumb {
+      @apply block items-center justify-between mb-4;
+      @apply sm:flex;
+    }
+
+    .breadcrumb-title {
+      @apply text-white uppercase font-[Poppins] text-lg md:text-[40px] font-bold leading-3 md:leading-[60px] text-left;
+    }
+
+    ul.breadcrumb-items {
+      @apply p-2 pl-0 pr-4 flex justify-start items-center m-0 rounded-md gap-2 overflow-x-scroll;
+      @apply sm:justify-end sm:pl-4;
+      list-style-type: none;
+      margin-block-start: 0;
+      margin-block-end: 0;
+    }
+
+    ul.breadcrumb-items li {
+      @apply flex;
+    }
+
+    ul.breadcrumb-items li::after {
+      content: ">";
+      @apply ml-2 text-gray-400 justify-center;
+    }
+
+    ul.breadcrumb-items li a {
+      @apply flex justify-center;
+      color: var(--color-primary);
+    }
+
+    ul.breadcrumb-items li a:hover {
+      color: var(--color-secondary);
+    }
+
+    ul.breadcrumb-items li:last-child::after {
+      content: none;
+    }
+
+    /**
+     *
+     * MAIN CONTENT
+     */
+    .main-content {
+      @apply p-5 relative min-h-[79vh];
+    }
+
+    /**
+     *
+     * FOOTER
+     */
+    .footer {
+      @apply block p-5 m-5 rounded-lg right-0 left-0;
+      @apply md:flex md:justify-between md:items-center;
+      font-family: "Poppins", sans-serif;
+      background-color: var(--color-primary);
+      color: var(--color-white);
+    }
+
+    .footer span {
+      @apply block mb-2;
+      color: var(--color-white);
+    }
+  }
+}

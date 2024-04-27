@@ -1,0 +1,48 @@
+#GuestLayout {
+  .container {
+    @apply w-[100%] px-[15px] mx-auto sm:max-w-[580px] md:max-w-[740px] lg:max-w-[1180px] xl:max-w-[1230px];
+  }
+
+  .navigation-mobile {
+    @apply hidden p-5 lg:hidden;
+  }
+
+  .navigation-mobile.active {
+    @apply block lg:hidden;
+  }
+
+  header {
+    @apply p-0 pt-[6%] pb-[12%] bg-no-repeat bg-cover relative;
+    background-image: url("/images/hero.jpg");
+  }
+
+  #section-about {
+    @apply bg-cover py-14;
+    background-image: url("/images/about-bg.png");
+  }
+
+  #section-service {
+    @apply bg-white py-14;
+  }
+
+  #section-gallery {
+    background-color: var(--color-primary);
+  }
+
+  #section-testimoni {
+    @apply py-14;
+    justify-content: "center";
+    text-align: center;
+  }
+
+  #section-contact {
+    @apply py-14;
+    justify-content: "center";
+    text-align: center;
+  }
+
+  #section-information {
+    @apply py-14;
+    background-color: var(--color-primary);
+  }
+}
