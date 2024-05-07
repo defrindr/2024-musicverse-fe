@@ -16,7 +16,7 @@ export default function Title({
 }: TitleProps) {
   return (
     <div {...props}>
-      <span className={`text-3xl ${trueColor ?? "text-black dark:text-white"}`}>
+      <span className={`text-3xl ${trueColor ?? "text-white dark:text-white"}`}>
         {main}
       </span>{" "}
       {second ? (

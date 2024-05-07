@@ -1,10 +1,28 @@
 #GuestLayout {
+  @apply bg-black text-white;
+}
+#GuestLayout {
+  header {
+    @apply bg-black;
+  }
+
+  #section-about {
+    @apply bg-black;
+  }
+
+  #section-header {
+    @apply bg-black;
+  }
+
+  #section-service {
+    @apply bg-black py-14;
+  }
   .container {
     @apply w-[100%] px-[15px] mx-auto sm:max-w-[580px] md:max-w-[740px] lg:max-w-[1180px] xl:max-w-[1230px];
   }
 
   .navigation-mobile {
-    @apply hidden p-5 lg:hidden;
+    @apply hidden p-5 lg:hidden bg-black text-white;
   }
 
   .navigation-mobile.active {
@@ -22,7 +40,7 @@
   }
 
   #section-service {
-    @apply bg-white py-14;
+    @apply bg-black py-14;
   }
 
   #section-gallery {

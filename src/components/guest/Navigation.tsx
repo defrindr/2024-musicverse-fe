@@ -28,7 +28,7 @@ export default function Navigation() {
   return (
     <>
       <div className="w-full h-[15px] bg-cyan-800" />
-      <div className="flex p-3 pl-8 pr-8 justify-between items-center bg-white dark:bg-black">
+      <div className="flex p-3 pl-8 pr-8 justify-between items-center text-white bg-black dark:bg-black">
         <div className="flex flex-col text-center items-center">
           <img
             src="/images/logo.png"

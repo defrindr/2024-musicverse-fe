@@ -96,7 +96,7 @@ const ListSidebarMenu: SidebarItemsProps[] = [
   {
     type: "link",
     label: "Logout",
-    href: "/talent/dashboard",
+    href: "/auth",
   },
   {
     type: "copyright",
