@@ -21,6 +21,7 @@ export type FormType = {
   fields: FieldFormType[];
   footer?: React.ReactNode;
   withSubmitButton?: boolean;
+  submitLabel?: string;
   onSubmit?: () => void;
 };
 
@@ -31,6 +32,7 @@ export default function Form({
   footer = null,
   withSubmitButton = false,
   onSubmit = undefined,
+  submitLabel
 }: FormType) {
   const HandleChangeInput = useCallback(
     (fieldName: string, isFile = false, multiple: boolean = false) => {
@@ -155,14 +157,20 @@ export default function Form({
         );
       })}
 
-      <div className="col-span-12">
+      <div className="col-span-12 flex flex-col">
         {footer}
         {withSubmitButton && (
           <>
-            <hr />
-            <button className="py-3 px-5 bg-primary mt-5 text-white rounded-md flex items-center gap-2">
-              <span className="material-icons">save</span>
-              <span>Simpan</span>
+            <button className="py-2 px-8 bg-primary mt-5 text-white rounded-full flex items-end gap-2 self-end font-semibold">
+              {
+                submitLabel ?
+                  submitLabel
+                  :
+                  <>
+                    <span className="material-icons">save</span>
+                    <span>Simpan</span>
+                  </>
+              }
             </button>
           </>
         )}

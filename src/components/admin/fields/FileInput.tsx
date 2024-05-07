@@ -7,7 +7,7 @@ import React, {
   useState,
 } from "react";
 import { DefaultInputType } from "./DefaultInputType";
-import InputLabel from "./components/label";
+import InputLabel from "./components/Label";
 import InputError from "./components/Error";
 import InputIcon from "./components/Icon";
 

@@ -1,6 +1,6 @@
 import { DetailedHTMLProps, InputHTMLAttributes } from "react";
 import { DefaultInputType } from "./DefaultInputType";
-import InputLabel from "./components/label";
+import InputLabel from "./components/Label";
 import InputError from "./components/Error";
 import InputIcon from "./components/Icon";
 
@@ -22,7 +22,7 @@ export default function TextInput({
           <InputIcon icon={icon} hasError={error} />
           <input
             {...props}
-            className={`rounded-sm border-[1px] border-gray-300 flex-1 outline-none bg-white dark:bg-gray-600 w-full ${props.className ?? ""} ${error ? "border-red-400" : ""} ${props.type === "color" ? "p-0" : "p-2"}`}
+            className={`rounded-lg border-[1px] text-white border-gray-300 flex-1 outline-none bg-transparent  w-full ${props.className ?? ""} ${error ? "border-red-400" : ""} ${props.type === "color" ? "p-0" : "p-2"}`}
           />
         </div>
         <InputError error={error} />

@@ -45,7 +45,7 @@ const ListSidebarMenu: SidebarItemsProps[] = [
     type: "menu",
     label: "Artist",
     icon: "/images/admin/sidebar/artist.svg",
-    href: "/admin/dashboard",
+    href: "/talent/dashboard",
   },
   {
     type: "hr",
@@ -54,31 +54,31 @@ const ListSidebarMenu: SidebarItemsProps[] = [
     type: "menu",
     label: "Metaverse",
     icon: "/images/admin/sidebar/metaverse.svg",
-    href: "/admin/dashboard",
+    href: "/talent/dashboard",
   },
   {
     type: "menu",
     label: "add portfolio",
     icon: "/images/admin/sidebar/add.svg",
-    href: "/admin/dashboard",
+    href: "/talent/add-portfolio",
   },
   {
     type: "menu",
     label: "library",
     icon: "/images/admin/sidebar/library.svg",
-    href: "/admin/dashboard",
+    href: "/talent/my-portfolio",
   },
   {
     type: "menu",
     label: "notification",
     icon: "/images/admin/sidebar/notification.svg",
-    href: "/admin/dashboard",
+    href: "/talent/notification",
   },
   {
     type: "menu",
     label: "settings",
     icon: "/images/admin/sidebar/settings.svg",
-    href: "/admin/dashboard",
+    href: "/talent/settings",
   },
   {
     type: "hr",
@@ -86,17 +86,17 @@ const ListSidebarMenu: SidebarItemsProps[] = [
   {
     type: "link",
     label: "Help",
-    href: "/admin/dashboard",
+    href: "/talent/dashboard",
   },
   {
     type: "link",
     label: "Contact Us",
-    href: "/admin/dashboard",
+    href: "/talent/dashboard",
   },
   {
     type: "link",
     label: "Logout",
-    href: "/admin/dashboard",
+    href: "/talent/dashboard",
   },
   {
     type: "copyright",

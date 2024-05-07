@@ -10,7 +10,8 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        primary: "rgba(var(--color-primary))",
+        primary: "var(--color-primary)",
+        secondary: "rgba(92, 102, 240, 1)",
         sidebar: "rgba(38, 35, 35, 0.6)",
       },
       backgroundImage: {

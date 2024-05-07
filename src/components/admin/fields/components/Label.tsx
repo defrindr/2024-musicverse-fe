@@ -7,7 +7,7 @@ export default function InputLabel({
 }) {
   if (!label) return <></>;
   return (
-    <label htmlFor={name} className="mb-2 font-bold">
+    <label htmlFor={name} className="mb-2 font-light text-white text-base">
       {label}
     </label>
   );

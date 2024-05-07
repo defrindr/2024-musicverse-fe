@@ -46,23 +46,13 @@ export default function Tabs(props: TabsType) {
   );
 
   return (
-    <div>
-      <ul className="flex pl-2">
+    <div className="component-tabs">
+      <ul className="flex md:pl-2 overflow-auto scroll-smooth no-scrollbar">
         {titles.map((title, index) => {
-          if (active === index) {
-            return (
-              <li
-                key={"title-" + index}
-                className="rounded-t-lg text-primary rounded-te-lg p-3 bg-white dark:bg-black"
-              >
-                {title}
-              </li>
-            );
-          }
           return (
             <li
               key={"title-" + index}
-              className="cursor-pointer rounded-t-lg text-gray-500 rounded-te-lg p-3"
+              className={`title ${active === index && 'active'}`}
               onClick={() => HandleChangeTab(index)}
             >
               {title}
@@ -70,7 +60,7 @@ export default function Tabs(props: TabsType) {
           );
         })}
       </ul>
-      <div className="bg-white dark:bg-black p-4 rounded-md">
+      <div className="bg-transparent md:p-4">
         {components.map((component, index) => {
           if (index === active) {
             return (

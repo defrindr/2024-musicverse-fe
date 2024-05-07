@@ -3,7 +3,7 @@ html {
   font-family: "Poppins", sans-serif;
 
   #AuthLayout.wrapper {
-    @apply relative overflow-hidden bg-black p-5 md:p-0 justify-center items-center;
+    @apply relative overflow-hidden bg-black p-5 md:p-0 justify-center items-center text-white;
     height: 100vh;
   }
 

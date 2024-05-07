@@ -1,8 +1,8 @@
 import { DetailedHTMLProps, TextareaHTMLAttributes } from "react";
 import { DefaultInputType } from "./DefaultInputType";
-import InputLabel from "./components/label";
 import InputError from "./components/Error";
 import InputIcon from "./components/Icon";
+import InputLabel from "./components/Label";
 
 export type TextAreaInputType = DefaultInputType &
   DetailedHTMLProps<
@@ -25,7 +25,7 @@ export default function TextAreaInput({
           <InputIcon icon={icon} hasError={error} />
           <textarea
             {...props}
-            className={`p-2 rounded-sm border-[1px] border-gray-300 flex-1 outline-none bg-white dark:bg-gray-600 w-full ${props.className ?? ""} ${error ? "border-red-400" : ""}`}
+            className={`p-2 rounded-sm border-[1px] border-gray-300 flex-1 outline-none bg-transparent w-full ${props.className ?? ""} ${error ? "border-red-400" : ""}`}
           ></textarea>
         </div>
         <InputError error={error} />

@@ -1,0 +1,9 @@
+.component-tabs {
+  .title {
+    @apply cursor-pointer text-gray-500 p-1 m-2 uppercase bg-transparent;
+  }
+
+  .title.active {
+    @apply text-primary font-semibold border-b-[2px] border-primary;
+  }
+}

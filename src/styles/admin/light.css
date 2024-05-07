@@ -9,6 +9,7 @@
 }
 
 @import url(./components.css);
+@import url(./components/tabs.css);
 
 /**
  *
@@ -105,8 +106,8 @@ html {
       transition: all 0.2s ease;
     }
 
-    #sidebar-wrapper.sidebar-collapse .sidebar-menu a ,
-    #sidebar-wrapper.sidebar-collapse .sidebar-dropdown a  {
+    #sidebar-wrapper.sidebar-collapse .sidebar-menu a,
+    #sidebar-wrapper.sidebar-collapse .sidebar-dropdown a {
       @apply justify-center px-0;
     }
 
@@ -180,7 +181,7 @@ html {
      */
 
     .header {
-      @apply flex bg-black justify-between items-center p-5;
+      @apply flex bg-black justify-between items-center p-5 pb-3;
     }
 
     .header-right-item,

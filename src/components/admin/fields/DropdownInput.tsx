@@ -9,7 +9,7 @@ import React, {
 } from "react";
 import { DefaultInputType } from "./DefaultInputType";
 import qs from "qs";
-import InputLabel from "./components/label";
+import InputLabel from "./components/Label";
 import InputError from "./components/Error";
 import InputIcon from "./components/Icon";
 
@@ -35,11 +35,11 @@ export type DropdownInputType = {
   /**
    * Number of delay in ms, when request from source
    */
-  remoteDelay: number;
+  remoteDelay?: number;
   /**
    * Dropdown placeholder
    */
-  placeholder: string;
+  placeholder?: string;
 } & DefaultInputType &
   DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>;
 
@@ -102,7 +102,7 @@ export default function DropdownInput({
   const HandleInputSearch = useCallback(
     (e: ChangeEvent<HTMLInputElement>) => {
       let keyword = e.target.value;
-      if (source !== "") {
+      if (source) {
         // Filter remote items
         if (intervalRemoteSearch.current)
           clearTimeout(intervalRemoteSearch.current);
@@ -115,16 +115,19 @@ export default function DropdownInput({
         }, remoteDelay);
       } else {
         // Filter local items
-        setFilteredItems(
-          items.filter((item) => {
-            if (!keyword) return 1;
-            return item.label.toLowerCase().indexOf(keyword.toLowerCase()) > 0;
-          }),
-        );
+        console.log(defaultItems)
+        if (defaultItems)
+          setFilteredItems(
+            defaultItems.filter((item) => {
+              if (!keyword) return 1;
+              return item.label.toLowerCase().indexOf(keyword.toLowerCase()) > 0;
+            }),
+          );
       }
     },
     [
       items,
+      defaultItems,
       FetchSourceItems,
       source,
       setFilteredItems,
@@ -143,8 +146,15 @@ export default function DropdownInput({
   );
 
   useEffect(() => {
-    InitialLoad();
-  }, [InitialLoad]);
+    if (source) {
+      InitialLoad();
+    } else {
+      if (defaultItems)
+        setFilteredItems(defaultItems);
+    }
+  },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    []);
 
   return (
     <div className={`${span}`}>
@@ -155,25 +165,25 @@ export default function DropdownInput({
           <input type="hidden" name={props.name} />
           <div
             onClick={HandleChangeVisibility}
-            className={`px-2 py-1 rounded-sm text-sm border-[1px] border-gray-300 flex justify-between items-center flex-1 outline-none bg-white dark:bg-gray-600 w-full ${props.className ?? ""} ${error ? "border-red-400" : ""}`}
+            className={`text-white p-2 rounded-lg text-sm border-[1px] border-gray-300 flex justify-between items-center flex-1 outline-none bg-transparent w-full ${props.className ?? ""} ${error ? "border-red-400" : ""}`}
           >
             {value?.label ?? placeholder}
-            <div>
+            <div className="flex justify-center items-center">
               <ClearButton
                 value={value || props.value}
                 onClick={HandleClearSelected}
               />
-              <span className="material-icons">arrow_drop_down</span>
+              <span className="material-icons text-white">arrow_drop_down</span>
             </div>
           </div>
           <div
             className={`
-            ${visibility ? "block" : "hidden"} absolute z-50 left-0 top-[100%] bg-white dark:bg-gray-600 border-[1px] p-2 w-full`}
+            ${visibility ? "block" : "hidden"} absolute z-50 left-0 top-[100%] bg-black dark:bg-gray-600 border-[1px] p-2 w-full rounded-md`}
           >
             <input
               onChange={HandleInputSearch}
               type="text"
-              className="border-[1px] w-full p-2 dark:bg-black"
+              className="border-[1px] w-full p-2 bg-transparent dark:bg-black rounded-lg"
               placeholder="Cari...."
             />
             <div className="pt-2 max-h-[200px] overflow-y-auto">
@@ -196,7 +206,7 @@ const DisplayItem = ({
 }) => {
   if (items.length <= 0)
     return (
-      <span className="text-gray-500 text-sm text-center block">
+      <span className="text-white text-sm text-center block">
         Item tidak tersedia
       </span>
     );
@@ -206,10 +216,10 @@ const DisplayItem = ({
       {items.map((item, index) => (
         <div
           key={`${item.key}-${index}`}
-          className="py-1 border-b-[1px]"
+          className="py-1 border-b-[1px] last:border-b-0"
           onClick={() => onClick(item)}
         >
-          <span className="text-sm">{item.label}</span>
+          <span className="text-sm text-white">{item.label}</span>
         </div>
       ))}
     </>
@@ -219,8 +229,10 @@ const DisplayItem = ({
 const ClearButton = ({ value, onClick }: any) => {
   if (!value) return <></>;
   return (
-    <span onClick={onClick} className="material-icons text-sm">
-      clear
+    <span onClick={onClick} className="text-sm text-white cursor-pointer">
+      <i className="material-icons" style={{ fontSize: '14px' }}>
+        clear
+      </i>
     </span>
   );
 };

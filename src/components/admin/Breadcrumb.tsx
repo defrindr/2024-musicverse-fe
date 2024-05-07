@@ -18,7 +18,7 @@ export default function Breadcrumb(props: BreadcrumbType) {
       </div>
       {/* <ul className="breadcrumb-items">
         <li>
-          <Link href={"/admin/dashboard"}>
+          <Link href={'/admin/dashboard'}>
             <span className="material-icons">home</span>
             <span>Home</span>
           </Link>

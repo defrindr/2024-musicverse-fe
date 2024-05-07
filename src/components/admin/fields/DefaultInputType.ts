@@ -1,6 +1,6 @@
 export type DefaultInputType = {
   label?: string;
-  icon?: string;
+  icon?: React.ReactNode;
   error?: string;
   name: string;
   span?: string;

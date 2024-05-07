@@ -2,12 +2,12 @@ export default function InputIcon({
   icon,
   hasError,
 }: {
-  icon?: string;
+  icon?: React.ReactNode;
   hasError?: string | undefined;
 }) {
   if (!icon) return <></>;
   return (
-    <span className={`material-icons mr-3 ${hasError ? "text-red-400" : ""}`}>
+    <span className={`mr-3 ${hasError ? "text-red-400" : ""}`}>
       {icon}
     </span>
   );
