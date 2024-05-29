@@ -6,7 +6,7 @@ import "slick-carousel/slick/slick-theme.css";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Pet Clinics",
+  title: "Musicverse",
 };
 
 export default function GuestLayout({

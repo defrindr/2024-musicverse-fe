@@ -1,12 +1,18 @@
+import Link from "next/link";
+
 const NavigationItem = ({
   children,
+  href = "#",
 }: {
   children: React.ReactNode | string;
+  href?: string;
 }) => {
   return (
     <li>
-      <a href="#">
-        <span className="text-sm font-semibold">{children}</span>
+      <a href={href}>
+        <span className="text-sm font-semibold  hover:text-primary">
+          {children}
+        </span>
       </a>
     </li>
   );
@@ -26,46 +32,50 @@ export default function Navigation() {
   };
 
   return (
-    <>
-      <div className="w-full h-[15px] bg-cyan-800" />
-      <div className="flex p-3 pl-8 pr-8 justify-between items-center text-white bg-black dark:bg-black">
-        <div className="flex flex-col text-center items-center">
+    <div className="sticky top-0 z-50  bg-black">
+      <div className="container flex p-5 pl-8 pr-8 justify-between items-center text-[#CCCCCC]">
+        <div className="flex flex-row text-center items-center justify-center gap-5">
           <img
-            src="/images/logo.png"
+            src="/images/guest/logo.png"
             alt="Logo"
-            className="w-[30px] h-auto mb-2"
+            className="w-[100px] h-auto"
           />
-          <span className="block font-bold text-lg">PETOLOGY</span>
+          <div className="hidden lg:block">
+            <ul className="flex gap-10">
+              <NavigationItem href="#section-discover">ABOUT</NavigationItem>
+              <NavigationItem href="#section-market">
+                HOW IT WORKS
+              </NavigationItem>
+              <NavigationItem href="#section-faq">FAQ</NavigationItem>
+            </ul>
+          </div>
         </div>
         <div className="block lg:hidden">
           <button onClick={HandleShowNavigation}>
             <span className="material-icons !text-4xl">menu</span>
           </button>
         </div>
-        <div className="hidden lg:block">
-          <ul className="flex gap-10">
-            <NavigationItem>HOME</NavigationItem>
-            <NavigationItem>SERVICE</NavigationItem>
-            <NavigationItem>PETS{"'"} GALLERY</NavigationItem>
-            <NavigationItem>CLINIC</NavigationItem>
-            <NavigationItem>CONTACT US</NavigationItem>
-            <NavigationItem>BUY NOW</NavigationItem>
-          </ul>
-        </div>
-        <div className="hidden lg:block">
-          <span>CALL: 1234-123-4124</span>
+        <div className="hidden lg:flex lg:gap-4 lg:items-center">
+          <Link href={"/auth/login"} className="text-sm">
+            LOG IN
+          </Link>
+          <Link
+            href={"/auth/signin"}
+            className="text-sm bg-primary text-white p-2 px-5 rounded-xl"
+          >
+            SIGN IN
+          </Link>
         </div>
       </div>
       <div id="navigation-mobile" className="navigation-mobile">
-        <ul className="flex flex-col gap-10">
-          <NavigationItem>HOME</NavigationItem>
-          <NavigationItem>SERVICE</NavigationItem>
-          <NavigationItem>PETS{"'"} GALLERY</NavigationItem>
-          <NavigationItem>CLINIC</NavigationItem>
-          <NavigationItem>CONTACT US</NavigationItem>
-          <NavigationItem>BUY NOW</NavigationItem>
+        <ul className="flex flex-col gap-3">
+          <NavigationItem>ABOUT</NavigationItem>
+          <NavigationItem>HOW IT WORKS</NavigationItem>
+          <NavigationItem>FAQ</NavigationItem>
+          <NavigationItem>LOG IN</NavigationItem>
+          <NavigationItem>SIGN IN</NavigationItem>
         </ul>
       </div>
-    </>
+    </div>
   );
 }

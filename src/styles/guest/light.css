@@ -30,13 +30,11 @@
   }
 
   header {
-    @apply p-0 pt-[6%] pb-[12%] bg-no-repeat bg-cover relative;
-    background-image: url("/images/hero.jpg");
+    @apply p-0 pt-[6%] pb-[2rem] bg-no-repeat bg-cover relative;
   }
 
   #section-about {
     @apply bg-cover py-14;
-    background-image: url("/images/about-bg.png");
   }
 
   #section-service {
