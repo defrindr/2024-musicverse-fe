@@ -7,8 +7,6 @@ export default function InputIcon({
 }) {
   if (!icon) return <></>;
   return (
-    <span className={`mr-3 ${hasError ? "text-red-400" : ""}`}>
-      {icon}
-    </span>
+    <span className={`mr-3 ${hasError ? "text-red-400" : ""}`}>{icon}</span>
   );
 }

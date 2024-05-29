@@ -24,7 +24,11 @@ export default function SidebarAdminApp({ items }: SidebarAdminAppProps) {
       </button>
       {/* <h4 className="sidebar-brand"> */}
       <div className="p-4">
-        <img src="/images/admin/sidebar-logo.png" alt="" className="w-[70px] h-auto block" />
+        <img
+          src="/images/admin/sidebar-logo.png"
+          alt=""
+          className="w-[70px] h-auto block"
+        />
       </div>
       {/* </h4> */}
       <ul className="sidebar-items">{items.map(GenerateSidebarItems)}</ul>
@@ -95,15 +99,19 @@ const GenerateSidebarItems = (item: SidebarItemsProps, index: number) => {
   if (item.type === "hr") {
     return <hr key={index} />;
   } else if (item.type === "link") {
-    return <li key={index}>
-      <Link href={item.href} className="sidebar-link">
-        {item.label}
-      </Link>
-    </li>;
+    return (
+      <li key={index}>
+        <Link href={item.href} className="sidebar-link">
+          {item.label}
+        </Link>
+      </li>
+    );
   } else if (item.type === "copyright") {
-    return <li key={index}>
-      <span className="sidebar-copyright">&copy; {item.text}</span>
-    </li>;
+    return (
+      <li key={index}>
+        <span className="sidebar-copyright">&copy; {item.text}</span>
+      </li>
+    );
   } else if (item.type === "title") {
     return <SidebarTitle key={index} label={item.label} />;
   } else if (item.type === "menu") {

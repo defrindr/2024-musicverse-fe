@@ -27,7 +27,7 @@ html {
     }
 
     .form .title {
-      font-family: 'Poppins';
+      font-family: "Poppins";
       @apply text-2xl md:text-[40px] md:mb-5;
       font-weight: 600;
       line-height: 43.6px;

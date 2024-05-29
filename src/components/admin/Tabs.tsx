@@ -52,7 +52,7 @@ export default function Tabs(props: TabsType) {
           return (
             <li
               key={"title-" + index}
-              className={`title ${active === index && 'active'}`}
+              className={`title ${active === index && "active"}`}
               onClick={() => HandleChangeTab(index)}
             >
               {title}

@@ -115,12 +115,14 @@ export default function DropdownInput({
         }, remoteDelay);
       } else {
         // Filter local items
-        console.log(defaultItems)
+        console.log(defaultItems);
         if (defaultItems)
           setFilteredItems(
             defaultItems.filter((item) => {
               if (!keyword) return 1;
-              return item.label.toLowerCase().indexOf(keyword.toLowerCase()) > 0;
+              return (
+                item.label.toLowerCase().indexOf(keyword.toLowerCase()) > 0
+              );
             }),
           );
       }
@@ -145,16 +147,17 @@ export default function DropdownInput({
     [],
   );
 
-  useEffect(() => {
-    if (source) {
-      InitialLoad();
-    } else {
-      if (defaultItems)
-        setFilteredItems(defaultItems);
-    }
-  },
+  useEffect(
+    () => {
+      if (source) {
+        InitialLoad();
+      } else {
+        if (defaultItems) setFilteredItems(defaultItems);
+      }
+    },
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    []);
+    [],
+  );
 
   return (
     <div className={`${span}`}>
@@ -230,7 +233,7 @@ const ClearButton = ({ value, onClick }: any) => {
   if (!value) return <></>;
   return (
     <span onClick={onClick} className="text-sm text-white cursor-pointer">
-      <i className="material-icons" style={{ fontSize: '14px' }}>
+      <i className="material-icons" style={{ fontSize: "14px" }}>
         clear
       </i>
     </span>
