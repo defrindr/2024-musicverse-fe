@@ -1,13 +1,12 @@
-import FooterApp from "@/components/admin/Footer";
 import HeaderAdminApp from "@/components/admin/Header";
 import SidebarAdminApp from "@/components/admin/Sidebar";
-import ListSidebarMenu from "@/data/admin/sidebar";
 
+import AdminSidebar from "@/data/admin/admin-sidebar";
 import "@/styles/admin/dark.css";
 import "@/styles/admin/light.css";
 import "material-icons/iconfont/material-icons.css";
-import "react-toastify/dist/ReactToastify.css"; //add this line
 import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css"; //add this line
 
 export default function AdminLayoutApp({
   children,
@@ -17,7 +16,7 @@ export default function AdminLayoutApp({
   return (
     <div id="AdminLayout" className="wrapper">
       <div className="wrapper-content">
-        <SidebarAdminApp items={ListSidebarMenu} />
+        <SidebarAdminApp items={AdminSidebar} />
         <div className="container-fluid">
           <HeaderAdminApp />
           <main className="main-content">{children}</main>

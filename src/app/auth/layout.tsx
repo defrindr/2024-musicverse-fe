@@ -16,7 +16,7 @@ export default function AdminLayoutApp({
           <div className="container-fluid">{children}</div>
         </div>
       </div>
-      <ToastContainer />
+      <ToastContainer theme="dark" />
     </>
   );
 }

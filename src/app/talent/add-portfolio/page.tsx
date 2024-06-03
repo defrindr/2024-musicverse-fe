@@ -7,5 +7,5 @@ export default function AddPortfolioPage() {
       <Breadcrumb title="Add New Portfolio" />
       <FormComponent />
     </>
-  )
+  );
 }

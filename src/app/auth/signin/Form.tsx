@@ -24,28 +24,16 @@ export default function FormSignin() {
   return (
     <div className="box-login">
       <form action={`#`} className="form" onSubmit={HandleSubmit}>
-        <span className="title">
-          We Helps You Create Amazing Music!
-        </span>
-        <Input
-          name="name"
-          type="text"
-          placeholder="Your Name"
-        />
-        <Input
-          name="email"
-          type="email"
-          placeholder="Enter Email"
-        />
-        <Input
-          name="password"
-          placeholder="Password"
-          password
-        />
+        <span className="title">We Helps You Create Amazing Music!</span>
+        <Input name="name" type="text" placeholder="Your Name" />
+        <Input name="email" type="email" placeholder="Enter Email" />
+        <Input name="password" placeholder="Password" password />
+        <Input name="password" placeholder="Confirm Password" password />
         <div className="flex gap-4">
           <input type="checkbox" />
           <span>
-            By creating an account you agree to the terms of service and privacy policy
+            By creating an account you agree to the terms of service and privacy
+            policy
           </span>
         </div>
         <div className="btn-container">
@@ -58,9 +46,7 @@ export default function FormSignin() {
             >
               {loading === "pending" ? "autorenew" : "login"}
             </span>
-            <span>
-              Masuk Sekarang
-            </span>
+            <span>Masuk Sekarang</span>
           </button>
         </div>
       </form>

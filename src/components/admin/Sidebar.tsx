@@ -1,6 +1,6 @@
 "use client";
 
-import { SidebarItemsProps } from "@/data/admin/sidebar";
+import { SidebarItemsProps } from "@/data/admin/types-sidebar";
 import Link from "next/link";
 import { useMemo } from "react";
 

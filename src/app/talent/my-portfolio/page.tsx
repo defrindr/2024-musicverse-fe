@@ -7,5 +7,5 @@ export default function MyPortfolioPage() {
       <Breadcrumb title="my portfolio" />
       <TableComponent />
     </>
-  )
+  );
 }

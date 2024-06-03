@@ -1,9 +1,7 @@
 "use client";
 import { useRouter } from "next/navigation";
 import { useCallback } from "react";
-import Gravatar from "./Gravatar";
 import { ActionSidebarCollapse } from "./Sidebar";
-import { useAppDispatch, useAppSelector } from "@/lib/redux/hooks";
 
 const HandleOpenPopupMenu = () => {
   const element = document.getElementById("header-modal-menu");
@@ -18,7 +16,6 @@ const HandleOpenPopupMenu = () => {
 
 export default function HeaderAdminApp() {
   const router = useRouter();
-  const dispatch = useAppDispatch();
 
   const HandleLogout = useCallback(() => {
     router.replace("/auth/login");

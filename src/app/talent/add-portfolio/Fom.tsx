@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import Form from "@/components/admin/Form";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -14,59 +14,58 @@ export default function FormComponent() {
           setter={FormState[1]}
           withSubmitButton
           submitLabel="NEXT"
-          onSubmit={() => router.push('/talent/add-portfolio/step-2')}
-
+          onSubmit={() => router.push("/talent/add-portfolio/step-2")}
           fields={[
             {
-              fieldType: 'text',
-              name: 'releaseTitle',
-              label: 'Release Title *'
+              fieldType: "text",
+              name: "releaseTitle",
+              label: "Release Title *",
             },
             {
-              fieldType: 'text',
-              name: 'keys',
-              label: 'Keys *',
-              span: 'col-span-6',
+              fieldType: "text",
+              name: "keys",
+              label: "Keys *",
+              span: "col-span-6",
             },
             {
-              fieldType: 'text',
-              name: 'bpm',
-              label: 'BPM (Bits Per Minutes) *',
-              span: 'col-span-6',
+              fieldType: "text",
+              name: "bpm",
+              label: "BPM (Bits Per Minutes) *",
+              span: "col-span-6",
             },
             {
-              fieldType: 'dropdown',
+              fieldType: "dropdown",
               items: [
                 {
-                  key: 'jazz',
-                  label: 'Jazz'
+                  key: "jazz",
+                  label: "Jazz",
                 },
                 {
-                  key: 'pop',
-                  label: 'Pop'
+                  key: "pop",
+                  label: "Pop",
                 },
                 {
-                  key: 'rock',
-                  label: 'Rock'
+                  key: "rock",
+                  label: "Rock",
                 },
               ],
-              name: 'genre',
-              label: 'Genre *',
+              name: "genre",
+              label: "Genre *",
             },
             {
-              fieldType: 'dropdown',
+              fieldType: "dropdown",
               items: [
                 {
-                  key: 'indonesia',
-                  label: 'Indonesia'
+                  key: "indonesia",
+                  label: "Indonesia",
                 },
               ],
-              name: 'language',
-              label: 'Language *',
+              name: "language",
+              label: "Language *",
             },
           ]}
         />
       </div>
     </div>
-  )
+  );
 }

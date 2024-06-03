@@ -9,22 +9,22 @@ export default function SettingPage() {
     <>
       <Breadcrumb title="your account setting" />
       <Tabs
-        pages={
-          [
-            {
-              title: "account",
-              component: <ProfileComponent />
-            },
-            {
-              title: "password",
-              component: <PasswordComponent />
-            },
-            {
-              title: "social",
-              component: <SocialComponent />
-            },
-          ]
-        } id={"settings"} />
+        pages={[
+          {
+            title: "account",
+            component: <ProfileComponent />,
+          },
+          {
+            title: "password",
+            component: <PasswordComponent />,
+          },
+          {
+            title: "social",
+            component: <SocialComponent />,
+          },
+        ]}
+        id={"settings"}
+      />
     </>
-  )
+  );
 }

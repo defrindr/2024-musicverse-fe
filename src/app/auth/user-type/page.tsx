@@ -5,7 +5,8 @@ export default function UserTypePage() {
     <>
       <div className="grid grid-cols-5 gap-0">
         <div className="col-span-5 md:col-span-3 flex flex-col gap-2">
-          <span className="
+          <span
+            className="
           font-[poppins]
           text-[48px]
           font-semibold
@@ -13,8 +14,14 @@ export default function UserTypePage() {
           tracking-[0.01em]
           text-left
           block
-          mb-4">“Are you an Artist or a Producer?”</span>
-          <span className="block mb-8">Select one profile type now and you can always create a second one later.</span>
+          mb-4"
+          >
+            “Are you an Artist or a Producer?”
+          </span>
+          <span className="block mb-8">
+            Select one profile type now and you can always create a second one
+            later.
+          </span>
         </div>
         <div className="col-span-5 md:col-span-2 flex flex-col gap-8">
           <Option

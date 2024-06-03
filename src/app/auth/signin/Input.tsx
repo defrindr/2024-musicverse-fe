@@ -12,11 +12,12 @@ export default function Input({
 }: InputProps) {
   return (
     <div className="form-group">
-      {
-        icon &&
-        <span className="material-icons">{icon}</span>
-      }
-      <input {...props} type={password ? "password" : props.type ?? "text"} />
+      {icon && <span className="material-icons">{icon}</span>}
+      <input
+        {...props}
+        type={password ? "password" : props.type ?? "text"}
+        className="outline-none"
+      />
     </div>
   );
 }

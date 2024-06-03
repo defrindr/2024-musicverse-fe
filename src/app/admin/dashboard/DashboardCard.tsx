@@ -5,7 +5,7 @@ type DashboardCardProps = {
   label: string;
   count: number;
   icon: string;
-  bg: string;
+  bg?: string;
   color?: string;
   dark?: boolean;
 };
@@ -14,7 +14,7 @@ export default function DashboardCard({
   label,
   count,
   icon,
-  bg,
+  bg = "bg-black",
   color,
   dark = false,
 }: DashboardCardProps) {
