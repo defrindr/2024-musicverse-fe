@@ -21,7 +21,8 @@ type DatatableType = {
   rowStyle?: string;
   tableStyle?: string;
   headStyle?: string;
-  createActionButton?: string | null;
+  EmptyListText?: string;
+  actionButtonHref?: string | null;
   actionColumn?: (item: any) => React.ReactNode;
   changeRequest: (param: any) => void;
   fields: {
@@ -107,10 +108,11 @@ export default function Datatable({
   rowStyle = "",
   tableStyle = "",
   headStyle = "",
-  createActionButton = null,
+  actionButtonHref = null,
   responsive = true,
   changeRequest,
   actionColumn,
+  EmptyListText = "Data tidak tersedia",
   index = true,
   searchable = false,
 }: DatatableType) {
@@ -121,11 +123,11 @@ export default function Datatable({
   return (
     <div className="bg-transparent p-4 rounded-md shadow-sm">
       <div className="grid grid-cols-2 gap-4">
-        {createActionButton && (
+        {actionButtonHref && (
           <div className="col-span-4 mt-3">
             <Link
               className="bg-green-500 p-2 px-4 rounded-md text-white"
-              href={createActionButton}
+              href={actionButtonHref}
             >
               Tambah Data
             </Link>
@@ -164,7 +166,7 @@ export default function Datatable({
                 {index && (
                   <th
                     key={"index"}
-                    className="font-light text-sm p-1 lg:p-4 lg:pl-8 pt-0 pb-3 text-white text-left"
+                    className="text-sm p-1 lg:p-4 lg:pl-8 pt-0 pb-3 text-white text-left"
                   >
                     #
                   </th>
@@ -174,7 +176,7 @@ export default function Datatable({
                     <th
                       key={index}
                       className={
-                        "font-light text-sm p-1 lg:p-4 lg:pl-8 pt-0 pb-3 text-white text-left uppercase " +
+                        "text-sm p-1 lg:p-4 lg:pl-8 pt-0 pb-3 text-white text-left uppercase " +
                         (field.titleClassName ?? "")
                       }
                       style={field.width ? { width: `${field.width}%` } : {}}
@@ -186,7 +188,7 @@ export default function Datatable({
                 {actionColumn && (
                   <th
                     key={"actionColumn"}
-                    className="font-light text-sm p-1 lg:p-4 lg:pl-8 pt-0 pb-3 text-white text-left"
+                    className="text-sm p-1 lg:p-4 lg:pl-8 pt-0 pb-3 text-white text-left"
                   >
                     Aksi
                   </th>
@@ -194,15 +196,23 @@ export default function Datatable({
               </tr>
             </thead>
             <tbody className="bg-transparent gap-5">
+              {
+                data.items.length === 0 &&
+                <tr>
+                  <td colSpan={fields.length + (index ? 1 : 0) + (actionColumn ? 1 : 0)} className="text-white text-center">
+                    {EmptyListText}
+                  </td>
+                </tr>
+              }
               {data.items.map((row: any, indexRow: number) => {
                 return (
                   <tr key={indexRow} className={rowStyle}>
                     {index && (
-                      <td key={"index"} className="p-1 lg:p-4 lg:pl-8">
+                      <td key={"index"} className="p-1 lg:p-4 lg:pl-8 text-white">
                         {indexRow +
                           1 +
                           (data.meta?.perPage ?? 0) *
-                            ((data.meta?.currentPage ?? 1) - 1)}
+                          ((data.meta?.currentPage ?? 1) - 1)}
                       </td>
                     )}
                     {fields.map((field, indexField) => {
@@ -210,7 +220,7 @@ export default function Datatable({
                         <td
                           key={indexField}
                           className={
-                            "p-1 lg:p-4 lg:pl-8 " + (field.className ?? "")
+                            "p-1 lg:p-4 lg:pl-8 text-white " + (field.className ?? "")
                           }
                         >
                           {field.value(row)}
@@ -218,7 +228,7 @@ export default function Datatable({
                       );
                     })}
                     {actionColumn && (
-                      <td key={"actionColumn"} className="p-1 lg:p-4 lg:pl-8">
+                      <td key={"actionColumn"} className="p-1 lg:p-4 lg:pl-8 text-white">
                         {actionColumn(row)}
                       </td>
                     )}

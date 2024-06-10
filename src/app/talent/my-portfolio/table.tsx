@@ -1,5 +1,5 @@
 "use client";
-import Datatable from "@/components/admin/datatable/page";
+import Datatable from "@/components/general/datatable/page";
 import moment from "moment";
 import Link from "next/link";
 
@@ -31,7 +31,7 @@ export default function TableComponent() {
 
   return (
     <Datatable
-      changeRequest={(params) => {}}
+      changeRequest={() => {}}
       index={false}
       tableStyle="border-separate border-spacing-y-[1em]"
       fields={[

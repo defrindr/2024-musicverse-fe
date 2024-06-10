@@ -2,7 +2,6 @@ import Breadcrumb from "@/components/general/Breadcrumb";
 import { Metadata } from "next";
 import dynamic from "next/dynamic";
 import DashboardCard from "./DashboardCard";
-import Confirm from "@/components/general/popups/Confirm";
 
 export const metadata: Metadata = {
   title: "Dashboard Admin",

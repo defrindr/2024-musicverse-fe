@@ -1,4 +1,4 @@
-import { ChangeEvent, FormEvent, useCallback, useEffect } from "react";
+import React, { ChangeEvent, FormEvent, useCallback, useEffect } from "react";
 import TextAreaInput, { TextAreaInputType } from "./fields/AreaInput";
 import DropdownInput, { DropdownInputType } from "./fields/DropdownInput";
 import FileInput, { FileInputType } from "./fields/FileInput";
@@ -19,6 +19,7 @@ export type FormType = {
   state: any;
   setter: any;
   fields: FieldFormType[];
+  formRef?: any;
   footer?: React.ReactNode;
   withSubmitButton?: boolean;
   submitLabel?: string;
@@ -29,6 +30,7 @@ export default function Form({
   state,
   setter,
   fields,
+  formRef = undefined,
   footer = null,
   withSubmitButton = false,
   onSubmit = undefined,
@@ -112,7 +114,7 @@ export default function Form({
   );
 
   return (
-    <form className="grid grid-cols-12 gap-3" onSubmit={HandleSubmit}>
+    <form className="grid grid-cols-12 gap-3" onSubmit={HandleSubmit} ref={formRef}>
       {fields.map((field: FieldFormType) => {
         const { fieldType: type, value, validations, ...props } = field;
 

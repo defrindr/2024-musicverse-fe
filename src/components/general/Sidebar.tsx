@@ -14,15 +14,24 @@ export const ActionSidebarCollapse = () => {
     window.document.getElementById("sidebar-wrapper");
   if (sidebarWrapper?.classList.contains("sidebar-collapse")) {
     sidebarWrapper?.classList.remove("sidebar-collapse");
-    setCookie(App.Cookie.View.SidebarCollapse, false)
+    if (typeof window !== "undefined") {
+      setCookie(App.Cookie.View.SidebarCollapse, false)
+    }
   } else {
     sidebarWrapper?.classList.add("sidebar-collapse");
-    setCookie(App.Cookie.View.SidebarCollapse, true)
+    if (typeof window !== "undefined") {
+      setCookie(App.Cookie.View.SidebarCollapse, true)
+    }
   }
 };
 
 export default function SidebarApp({ children }: SidebarAppProps) {
-  const collapse = getCookie(App.Cookie.View.SidebarCollapse) === "true";
+  let collapse;
+  if (typeof window !== "undefined") {
+    collapse = getCookie(App.Cookie.View.SidebarCollapse) === "true";
+  } else {
+    collapse = false;
+  }
   return (
     <div id="sidebar-wrapper" className={collapse ? "sidebar-collapse" : ""}>
       <button className="sidebar-close-button" onClick={ActionSidebarCollapse}>
@@ -88,11 +97,11 @@ const OpenSidebarDropdown = (event: React.MouseEvent<HTMLElement>) => {
 export const SidebarDropdown = ({
   label,
   icon,
-  items,
+  children,
 }: {
   label: string;
   icon: string;
-  items: React.ReactNode;
+  children: React.ReactNode;
 }) => {
   return (
     <li className="sidebar-dropdown">
@@ -101,7 +110,7 @@ export const SidebarDropdown = ({
         <span>{label}</span>
         <span className="material-icons">navigate_before</span>
       </a>
-      <ul className="sidebar-dropdown-items">{items}</ul>
+      <ul className="sidebar-dropdown-items">{children}</ul>
     </li>
   );
 };

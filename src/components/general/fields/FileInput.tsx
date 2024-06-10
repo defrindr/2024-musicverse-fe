@@ -88,7 +88,7 @@ export default function FileInput({
             {...props}
             onChange={HandleChangeFile}
             type="file"
-            className={`file:mr-5 file:px-3 file:text-xs file:font-medium file:border-none file:rounded-md file:py-2 file:bg-[var(--color-primary)] file:text-white p-2 rounded-sm border-[1px] border-gray-300 flex-1 outline-none bg-white dark:bg-gray-600 w-full ${props.className ?? ""} ${error ? "border-red-400" : ""}`}
+            className={`file:mr-5 file:px-3 file:text-xs file:font-medium file:border-none file:rounded-md rounded-lg file:py-2 file:bg-[var(--color-primary)] file:text-white p-2 border-[1px] border-gray-300 text-white flex-1 outline-none bg-transparent w-full ${props.className ?? ""} ${error ? "border-red-400" : ""}`}
           />
           <RemoveButton onClick={HandleRemoveFile} files={files} />
         </div>

@@ -10,6 +10,7 @@ export default function ProducerSidebar() {
     <>
       <SidebarApp>
         <SidebarTitle label="Selamat Datang Producer," />
+        <SidebarMenu label="Audition" href="/producer/audition" icon="/images/admin/sidebar/metaverse.svg" type="image" />
         <SidebarMenu label="Settings" href="/producer/settings" icon="/images/admin/sidebar/settings.svg" type="image" />
         <hr />
         <SidebarButton onClick={() => setConfirmLogout(!confirmLogout)} label="Logout" />
