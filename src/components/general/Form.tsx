@@ -119,7 +119,7 @@ export default function Form({
         if (type === "dropdown")
           return (
             <DropdownInput
-              value={state?.values?.[props.name] ?? ""}
+              value={state?.values?.[props.name] ?? value ?? ""}
               error={state?.invalids?.[props.name] ?? ""}
               onChange={HandleChangeInput(props.name)}
               key={props.name}
@@ -129,7 +129,7 @@ export default function Form({
         else if (type === "textarea")
           return (
             <TextAreaInput
-              value={state?.values?.[props.name] ?? ""}
+              value={state?.values?.[props.name] ?? value ?? ""}
               error={state?.invalids?.[props.name] ?? ""}
               onChange={HandleChangeInput(props.name)}
               key={props.name}
@@ -148,7 +148,7 @@ export default function Form({
           );
         return (
           <TextInput
-            value={state?.values?.[props.name] ?? ""}
+            value={state?.values?.[props.name] ?? value ?? ""}
             error={state?.invalids?.[props.name] ?? ""}
             onChange={HandleChangeInput(props.name)}
             key={props.name}

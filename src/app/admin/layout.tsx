@@ -1,7 +1,6 @@
-import HeaderAdminApp from "@/components/admin/Header";
-import SidebarAdminApp from "@/components/admin/Sidebar";
+import AdminSidebar from "@/components/admin/Sidebar";
+import HeaderAdminApp from "@/components/general/Header";
 
-import AdminSidebar from "@/data/admin/admin-sidebar";
 import "@/styles/admin/dark.css";
 import "@/styles/admin/light.css";
 import "material-icons/iconfont/material-icons.css";
@@ -16,7 +15,7 @@ export default function AdminLayoutApp({
   return (
     <div id="AdminLayout" className="wrapper">
       <div className="wrapper-content">
-        <SidebarAdminApp items={AdminSidebar} />
+        <AdminSidebar />
         <div className="container-fluid">
           <HeaderAdminApp />
           <main className="main-content">{children}</main>

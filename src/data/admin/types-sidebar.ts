@@ -32,10 +32,17 @@ type SidebarLinkProps = {
   href: string;
 };
 
+type SidebarButtonProps = {
+  type: "button";
+  label: string;
+  onClick: any;
+};
+
 export type SidebarItemsProps =
   | SidebarLinkProps
   | SidebarCopyrightProps
   | SidebarHrProps
   | SidebarItemMenuProps
   | SidebarItemTitleProps
-  | SidebarItemDropdownProps;
+  | SidebarItemDropdownProps
+  | SidebarButtonProps;

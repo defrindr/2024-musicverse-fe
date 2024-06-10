@@ -1,4 +1,4 @@
-import Breadcrumb from "@/components/admin/Breadcrumb";
+import Breadcrumb from "@/components/general/Breadcrumb";
 import FormComponent from "./Fom";
 
 export default function AddPortfolioPage() {

@@ -68,13 +68,15 @@ export default function Navigation() {
         </div>
       </div>
       <div id="navigation-mobile" className="navigation-mobile">
-        <ul className="flex flex-col gap-3">
-          <NavigationItem>ABOUT</NavigationItem>
-          <NavigationItem>HOW IT WORKS</NavigationItem>
-          <NavigationItem>FAQ</NavigationItem>
-          <NavigationItem>LOG IN</NavigationItem>
-          <NavigationItem>SIGN IN</NavigationItem>
-        </ul>
+        <div className="container">
+          <ul className="flex flex-col gap-3">
+            <NavigationItem>ABOUT</NavigationItem>
+            <NavigationItem>HOW IT WORKS</NavigationItem>
+            <NavigationItem>FAQ</NavigationItem>
+            <NavigationItem href="/auth/login">LOG IN</NavigationItem>
+            <NavigationItem href="/auth/signin">SIGN IN</NavigationItem>
+          </ul>
+        </div>
       </div>
     </div>
   );

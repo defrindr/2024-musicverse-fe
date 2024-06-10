@@ -6,7 +6,9 @@ type ValidationType = {
 export const Validations = {
   Required: (message: string = "Field must be filled"): ValidationType => {
     return {
-      rule: (text: string) => {
+      rule: (text: string = "") => {
+        if (text === null) text = "";
+
         let regExp = new RegExp("^(?!\\s*$).+");
         let validationResult = text.match(regExp);
 

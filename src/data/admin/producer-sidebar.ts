@@ -1,3 +1,5 @@
+'use client';
+import { onLogout } from "@/lib/utis/api";
 import { SidebarItemsProps } from "./types-sidebar";
 
 const ProducerSidebar: SidebarItemsProps[] = [
@@ -30,9 +32,11 @@ const ProducerSidebar: SidebarItemsProps[] = [
     href: "/producer/dashboard",
   },
   {
-    type: "link",
+    type: "button",
     label: "Logout",
-    href: "/auth",
+    onClick: () => {
+      onLogout();
+    },
   },
   {
     type: "copyright",

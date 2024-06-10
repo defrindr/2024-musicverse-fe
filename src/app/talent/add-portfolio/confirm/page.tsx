@@ -1,4 +1,4 @@
-import Breadcrumb from "@/components/admin/Breadcrumb";
+import Breadcrumb from "@/components/general/Breadcrumb";
 import PreviewComponent from "./Preview";
 
 export default function AddPortfolioStep2Page() {

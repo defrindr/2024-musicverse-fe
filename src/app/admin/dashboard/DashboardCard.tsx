@@ -1,4 +1,4 @@
-import Card from "@/components/admin/Card";
+import Card from "@/components/general/Card";
 import { useMemo } from "react";
 
 type DashboardCardProps = {

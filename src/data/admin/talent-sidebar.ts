@@ -1,3 +1,5 @@
+'use client';
+import { onLogout } from "@/lib/utis/api";
 import { SidebarItemsProps } from "./types-sidebar";
 
 const TalentSidebar: SidebarItemsProps[] = [
@@ -54,9 +56,11 @@ const TalentSidebar: SidebarItemsProps[] = [
     href: "/talent/dashboard",
   },
   {
-    type: "link",
+    type: "button",
     label: "Logout",
-    href: "/auth",
+    onClick: () => {
+      onLogout();
+    },
   },
   {
     type: "copyright",

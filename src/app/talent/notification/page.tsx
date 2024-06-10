@@ -1,5 +1,5 @@
-import Breadcrumb from "@/components/admin/Breadcrumb";
-import Tabs from "@/components/admin/Tabs";
+import Breadcrumb from "@/components/general/Breadcrumb";
+import Tabs from "@/components/general/Tabs";
 
 type NotificationItemType = {
   icon: "history" | "achievement";

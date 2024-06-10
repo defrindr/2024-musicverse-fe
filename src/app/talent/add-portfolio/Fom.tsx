@@ -1,5 +1,5 @@
 "use client";
-import Form from "@/components/admin/Form";
+import Form from "@/components/general/Form";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 

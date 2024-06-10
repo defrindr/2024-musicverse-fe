@@ -1,4 +1,4 @@
-import Breadcrumb from "@/components/admin/Breadcrumb";
+import Breadcrumb from "@/components/general/Breadcrumb";
 import TableComponent from "./table";
 
 export default function MyPortfolioPage() {
