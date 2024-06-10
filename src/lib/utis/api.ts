@@ -59,11 +59,9 @@ export const api: typeApi = async ({
   /**
    * Set content type
    */
-  headers["Accept"] = "application/json";
-  if (headers["Content-Type"] !== undefined) {
-    headers["Content-Type"] = "application/json";
-  }
   if (body && !(body instanceof FormData)) {
+    headers["Accept"] = "application/json";
+    headers["Content-Type"] = "application/json";
     if (typeof body == "object") body = JSON.stringify(body);
   }
 
