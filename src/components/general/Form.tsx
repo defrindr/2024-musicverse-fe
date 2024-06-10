@@ -123,7 +123,11 @@ export default function Form({
             <DropdownInput
               value={state?.values?.[props.name] ?? value ?? ""}
               error={state?.invalids?.[props.name] ?? ""}
-              onChange={HandleChangeInput(props.name)}
+              onChange={(value: any) => {
+                const newState = Object.assign({}, state);
+                newState.values[props.name] = value;
+                setter(newState);
+              }}
               key={props.name}
               {...(props as DropdownInputType)}
             />

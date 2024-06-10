@@ -1,3 +1,4 @@
+"use client";
 import React, {
   ChangeEvent,
   DetailedHTMLProps,
@@ -52,6 +53,7 @@ export default function DropdownInput({
   source = "",
   remoteDelay = 1500,
   placeholder = "-- Pilih --",
+  onChange,
   ...props
 }: DropdownInputType) {
   const [visibility, setVisibility] = useState<boolean>(false);
@@ -61,10 +63,13 @@ export default function DropdownInput({
   let intervalRemoteSearch = React.useRef<NodeJS.Timeout | null>(null);
 
   const valueElement = useMemo(
-    () =>
-      document.querySelector(
-        `input[name=${props.name.replaceAll(".", "\\.")}]`,
-      ),
+    () => {
+      if (typeof window !== "undefined")
+        return document.querySelector(
+          `input[name=${props.name.replaceAll(".", "\\.")}]`,
+        )
+      return null
+    },
     [props.name],
   );
   const HandleChangeVisibility = useCallback(
@@ -81,8 +86,9 @@ export default function DropdownInput({
       valueElement?.setAttribute("value", newValue.key as any);
       setValue(newValue);
       setVisibility(false);
+      if (onChange) onChange(newValue.key as any);
     },
-    [valueElement, setValue, setVisibility],
+    [onChange, valueElement, setValue, setVisibility],
   );
   const FetchSourceItems = useCallback(
     async (search: string = ""): Promise<SourceResult | null> => {
@@ -115,7 +121,6 @@ export default function DropdownInput({
         }, remoteDelay);
       } else {
         // Filter local items
-        console.log(defaultItems);
         if (defaultItems)
           setFilteredItems(
             defaultItems.filter((item) => {
