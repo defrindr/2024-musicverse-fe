@@ -4,13 +4,12 @@ import Form from "@/components/general/Form";
 import App from "@/config/app";
 import { api } from "@/lib/utis/api";
 import { Validations } from "@/lib/utis/validation";
-import path from "path";
-import { useContext, useRef, useState } from "react";
+import { useRouter } from "next/navigation";
+import { useEffect, useRef, useState } from "react";
 import { toast } from "react-toastify";
-import { AuditionContext } from "./Context";
 
-export default function AuditionForm() {
-  const { state } = useContext(AuditionContext);
+export default function AuditionEditForm({ id }: { id: number }) {
+  const router = useRouter();
   const formRef = useRef();
   const FormState = useState<{
     values: any;
@@ -27,8 +26,8 @@ export default function AuditionForm() {
 
   const HandleSubmit = async () => {
     const res = await api({
-      path: "/auditions/audition",
-      method: "post",
+      path: `/auditions/audition/${id}`,
+      method: "put",
       body: new FormData(formRef.current),
     });
     const json = await res.json();
@@ -40,8 +39,25 @@ export default function AuditionForm() {
 
     toast.success(json.message);
     FormState[1]((prop) => ({ ...prop, values: {} }));
-    if (state?.fetchedData) state?.fetchedData();
+    router.replace(`/producer/audition/${id}`);
   };
+
+  const fetched = async () => {
+    const res = await api({
+      path: `/auditions/audition/${id}`,
+    });
+    const json = await res.json();
+    if (res.ok) {
+      FormState[1]((prop) => ({
+        ...prop,
+        values: { ...json.data, date: json.data._date },
+      }));
+    }
+  };
+
+  useEffect(() => {
+    fetched();
+  }, []);
 
   return (
     <>
@@ -86,6 +102,8 @@ export default function AuditionForm() {
             span: "col-span-12 md:col-span-6",
             accept: "application/pdf",
             validations: [Validations.Required()],
+            withPreview: true,
+            preview: FormState[0].values.term,
           },
           {
             fieldType: "file",
@@ -94,6 +112,8 @@ export default function AuditionForm() {
             span: "col-span-12 md:col-span-6",
             accept: "application/pdf",
             validations: [Validations.Required()],
+            withPreview: true,
+            preview: FormState[0].values.contract,
           },
         ]}
       />

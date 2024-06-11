@@ -12,42 +12,44 @@ export default function ProfileComponent() {
       name: "",
       email: "",
       phone_number: "",
-      country: ""
-    }
+      country: "",
+    },
   });
 
   const fetchedUserProfile = async () => {
     const res = await api({
-      path: '/auth/user',
-    })
+      path: "/auth/user",
+    });
     const json = await res.json();
     if (res.ok) {
       const { name, phone_number, email, country } = json.data.user;
-      FormState[1]((prop) => ({ ...prop, values: { name, phone_number, email, country } }))
+      FormState[1]((prop) => ({
+        ...prop,
+        values: { name, phone_number, email, country },
+      }));
       // console.log(json.data.user)
     } else {
-      toast.error(json.message)
+      toast.error(json.message);
     }
-  }
-
+  };
 
   const updateProfile = async () => {
     const res = await api({
-      path: '/auth/user',
-      method: 'put',
+      path: "/auth/user",
+      method: "put",
       body: FormState[0].values,
-    })
+    });
     let json = await res.json();
     if (res.ok) {
-      toast.success(json.message)
+      toast.success(json.message);
     } else {
-      toast.error(json.message)
+      toast.error(json.message);
     }
-  }
+  };
 
   useEffect(() => {
     fetchedUserProfile();
-  }, [])
+  }, []);
 
   return (
     <>
@@ -91,9 +93,7 @@ export default function ProfileComponent() {
               {
                 fieldType: "text",
                 type: "text",
-                validations: [
-                  Validations.Required()
-                ],
+                validations: [Validations.Required()],
                 name: "phone_number",
                 label: "Phone Number",
               },

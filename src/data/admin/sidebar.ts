@@ -3,4 +3,3 @@ import ProducerSidebar from "./producer-sidebar";
 import TalentSidebar from "./talent-sidebar";
 
 export { AdminSidebar, ProducerSidebar, TalentSidebar };
-

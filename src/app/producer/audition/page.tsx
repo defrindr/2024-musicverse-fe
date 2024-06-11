@@ -1,6 +1,7 @@
 import Breadcrumb from "@/components/general/Breadcrumb";
 import Tabs from "@/components/general/Tabs";
 import { Metadata } from "next";
+import AuditionContextComponent from "./Context";
 import AuditionForm from "./Form";
 import AuditionList from "./List";
 
@@ -11,7 +12,7 @@ export const metadata: Metadata = {
 
 export default function AdminDashboardPage() {
   return (
-    <>
+    <AuditionContextComponent>
       <Breadcrumb title="Virtual Reality Auditions" />
       <Tabs
         pages={[
@@ -26,6 +27,6 @@ export default function AdminDashboardPage() {
         ]}
         id={"audition"}
       />
-    </>
+    </AuditionContextComponent>
   );
 }

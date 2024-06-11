@@ -126,12 +126,10 @@ const FilePreview = ({ withPreview, files, preview }: FilePreviewType) => {
     preview.length > 0
   ) {
     displayView = (
-      <>
-        {preview?.map((url, index) => <ImagePreview key={index} url={url} />)}
-      </>
+      <>{preview?.map((url, index) => <UrlPreview key={index} url={url} />)}</>
     );
   } else if (typeof preview === "string") {
-    displayView = <ImagePreview key={preview} url={preview} />;
+    displayView = <UrlPreview key={preview} url={preview} />;
   } else {
     displayView = (
       <span className="text-sm text-gray-500 dark:text-white">
@@ -159,6 +157,25 @@ const ImagePreview = ({
   );
 };
 
+const UrlPreview = ({
+  url,
+  alt = "preview file",
+}: {
+  url: string;
+  alt?: string;
+}) => {
+  if (url.match(/\.(jpeg|jpg|gif|png)$/))
+    return <ImagePreview alt={alt} url={url} />;
+  else if (url.match(/\.pdf$/))
+    return (
+      <iframe
+        className="m-2 min-h-[400px] min-w-[250px]"
+        src={`${url}#toolbar=0&navpanes=0`}
+      ></iframe>
+    );
+  return <></>;
+};
+
 const DynamicFilePreview = ({
   file,
   url,
@@ -166,18 +183,19 @@ const DynamicFilePreview = ({
   file: File;
   url: string;
 }): React.ReactNode => {
+  if (file.type.match("image/"))
+    return <ImagePreview alt={`preview image ${file.name}`} url={url} />;
+  else if (file.type.match("application/pdf"))
+    return (
+      <iframe
+        className="m-2 min-h-[400px] min-w-[250px]"
+        src={`${url}#toolbar=0&navpanes=0`}
+      ></iframe>
+    );
   return (
-    <>
-      {file.type.match("image/") ? (
-        <ImagePreview alt={`preview image ${file.name}`} url={url} />
-      ) : file.type.match("application/pdf") ? (
-        <iframe className="m-2 min-h-[400px] min-w-[250px]" src={url}></iframe>
-      ) : (
-        <div className="h-[200px] w-[150px] flex flex-col items-center justify-center rounded-sm m-2 border-[1px] relative">
-          <div className=" w-[0px] h-[0px] border-[10px] border-transparent border-r-[var(--color-primary)] border-t-[var(--color-primary)] absolute top-0 right-0"></div>
-          <span className="text-xs block m-2 text-wrap">{file.name}</span>
-        </div>
-      )}
-    </>
+    <div className="h-[200px] w-[150px] flex flex-col items-center justify-center rounded-sm m-2 border-[1px] relative">
+      <div className=" w-[0px] h-[0px] border-[10px] border-transparent border-r-[var(--color-primary)] border-t-[var(--color-primary)] absolute top-0 right-0"></div>
+      <span className="text-xs block m-2 text-wrap">{file.name}</span>
+    </div>
   );
 };

@@ -10,13 +10,13 @@ export function middleware(request: NextRequest) {
 
   const userToken = request.cookies.get(App.Cookie.Auth.Token)?.value;
   const userExpiredAt = parseInt(
-    request.cookies.get(App.Cookie.Auth.ExpiredAt)?.value ?? "0"
+    request.cookies.get(App.Cookie.Auth.ExpiredAt)?.value ?? "0",
   );
   const redirectTo =
     request.cookies.get(App.Cookie.Auth.RedirectTo)?.value ?? "/";
   const userAuthed = JSON.parse(
     request.cookies.get(App.Cookie.Auth.User)?.value ??
-      JSON.stringify({ role: "" })
+      JSON.stringify({ role: "" }),
   );
   function logout() {
     request.cookies.delete(App.Cookie.Auth.User);
@@ -60,7 +60,7 @@ export function middleware(request: NextRequest) {
       }
     }
   } else if (["/auth/login", "/auth/signin"].includes(pathname)) {
-    console.log(userToken)
+    console.log(userToken);
     if (userToken) {
       return NextResponse.redirect(new URL(redirectTo, request.url));
     }

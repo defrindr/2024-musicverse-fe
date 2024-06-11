@@ -41,7 +41,7 @@ html {
       transition: all 0.3s ease;
     }
 
-    .wrapper-content:has(#sidebar-wrapper.sidebar-collapse)>.container-fluid {
+    .wrapper-content:has(#sidebar-wrapper.sidebar-collapse) > .container-fluid {
       @apply m-0 md:ml-14;
     }
 
@@ -149,7 +149,7 @@ html {
       @apply pr-3;
     }
 
-    .sidebar-dropdown>a>span:last-child {
+    .sidebar-dropdown > a > span:last-child {
       position: absolute;
       right: 0;
     }

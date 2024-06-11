@@ -1,7 +1,11 @@
 "use client";
 import { useState } from "react";
 import Confirm from "../general/popups/Confirm";
-import SidebarApp, { SidebarButton, SidebarMenu, SidebarTitle } from "../general/Sidebar";
+import SidebarApp, {
+  SidebarButton,
+  SidebarMenu,
+  SidebarTitle,
+} from "../general/Sidebar";
 import { onLogout } from "@/lib/utis/api";
 
 export default function ProducerSidebar() {
@@ -10,12 +14,30 @@ export default function ProducerSidebar() {
     <>
       <SidebarApp>
         <SidebarTitle label="Selamat Datang Producer," />
-        <SidebarMenu label="Audition" href="/producer/audition" icon="/images/admin/sidebar/metaverse.svg" type="image" />
-        <SidebarMenu label="Settings" href="/producer/settings" icon="/images/admin/sidebar/settings.svg" type="image" />
+        <SidebarMenu
+          label="Audition"
+          href="/producer/audition"
+          icon="/images/admin/sidebar/metaverse.svg"
+          type="image"
+        />
+        <SidebarMenu
+          label="Settings"
+          href="/producer/settings"
+          icon="/images/admin/sidebar/settings.svg"
+          type="image"
+        />
         <hr />
-        <SidebarButton onClick={() => setConfirmLogout(!confirmLogout)} label="Logout" />
+        <SidebarButton
+          onClick={() => setConfirmLogout(!confirmLogout)}
+          label="Logout"
+        />
       </SidebarApp>
-      <Confirm text={"Apakah anda yakin ingin keluar ?"} onApprove={onLogout} active={confirmLogout} onCancel={setConfirmLogout} />
+      <Confirm
+        text={"Apakah anda yakin ingin keluar ?"}
+        onApprove={onLogout}
+        active={confirmLogout}
+        onCancel={setConfirmLogout}
+      />
     </>
-  )
+  );
 }

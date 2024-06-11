@@ -13,5 +13,5 @@ export default function SkillList() {
       <Breadcrumb title="Skill kategori" description="List skill kategori" />
       <List />
     </>
-  )
+  );
 }

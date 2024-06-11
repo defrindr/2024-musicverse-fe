@@ -9,28 +9,28 @@ export default function FormSkillCategory({ id }: { id?: number }) {
   const router = useRouter();
   const formRef = useRef();
 
-  const FormState = useState({})
+  const FormState = useState({});
 
   const fetchedData = async () => {
-
     if (id) {
       let res = await api({
-        path: `/auditions/skill-category/${id}`
-      })
-      let json = await res.json()
+        path: `/auditions/skill-category/${id}`,
+      });
+      let json = await res.json();
 
       if (!res.ok) {
-        toast.error(json.message)
+        toast.error(json.message);
         return;
       }
 
       FormState[1]((prop) => ({
-        ...prop, values: {
-          name: json.data.name
-        }
-      }))
+        ...prop,
+        values: {
+          name: json.data.name,
+        },
+      }));
     }
-  }
+  };
 
   const HandleSubmit = async () => {
     let path = "/auditions/skill-category";
@@ -38,26 +38,26 @@ export default function FormSkillCategory({ id }: { id?: number }) {
 
     const res = await api({
       path,
-      method: 'post',
-      body: new FormData(formRef.current)
-    })
+      method: "post",
+      body: new FormData(formRef.current),
+    });
 
     const json = await res.json();
 
     if (res.ok) {
-      toast.success(json.message)
+      toast.success(json.message);
 
-      router.replace('/admin/master/skill');
-      router.refresh()
-      return
+      router.replace("/admin/master/skill");
+      router.refresh();
+      return;
     }
 
-    toast.error(json.message)
-  }
+    toast.error(json.message);
+  };
 
   useEffect(() => {
     fetchedData();
-  }, [])
+  }, []);
 
   return (
     <Form
@@ -66,20 +66,19 @@ export default function FormSkillCategory({ id }: { id?: number }) {
       state={FormState[0]}
       setter={FormState[1]}
       withSubmitButton
-      fields={
-        [
-          {
-            fieldType: 'text',
-            name: 'name',
-            label: 'Nama Kategori'
-          },
-          {
-            fieldType: 'file',
-            name: 'icon',
-            label: 'Ikon',
-            accept: 'image/*'
-          }
-        ]
-      } />
-  )
+      fields={[
+        {
+          fieldType: "text",
+          name: "name",
+          label: "Nama Kategori",
+        },
+        {
+          fieldType: "file",
+          name: "icon",
+          label: "Ikon",
+          accept: "image/*",
+        },
+      ]}
+    />
+  );
 }

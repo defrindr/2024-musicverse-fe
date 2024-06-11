@@ -1,4 +1,4 @@
-'use client';
+"use client";
 import { onLogout } from "@/lib/utis/api";
 import { SidebarItemsProps } from "./types-sidebar";
 

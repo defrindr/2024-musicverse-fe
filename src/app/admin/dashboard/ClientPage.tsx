@@ -3,9 +3,7 @@
 import { useEffect } from "react";
 
 export default function ClientPage() {
-  useEffect(() => {
+  useEffect(() => {}, []);
 
-  }, [])
-
-  return <h1>Test</h1>
+  return <h1>Test</h1>;
 }

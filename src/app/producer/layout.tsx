@@ -1,4 +1,3 @@
-
 import HeaderAdminApp from "@/components/general/Header";
 import ProducerSidebar from "@/components/producer/Sidebar";
 import "@/styles/admin/dark.css";

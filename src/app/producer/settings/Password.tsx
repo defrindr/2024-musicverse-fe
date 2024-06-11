@@ -8,30 +8,30 @@ import { toast } from "react-toastify";
 
 export default function PasswordComponent() {
   const defaultState = {
-    oldPassword: '',
-    newPassword: '',
-    confirmPassword: ''
+    oldPassword: "",
+    newPassword: "",
+    confirmPassword: "",
   };
 
   const PasswordFieldState = useState({
-    values: defaultState
+    values: defaultState,
   });
 
   const HandleSubmit = async () => {
     let res = await api({
-      path: '/auth/password',
-      method: 'put',
-      body: PasswordFieldState[0].values
+      path: "/auth/password",
+      method: "put",
+      body: PasswordFieldState[0].values,
     });
     let json = await res.json();
 
     if (res.ok) {
-      toast.success(json.message)
+      toast.success(json.message);
       PasswordFieldState[1]((prop) => ({ ...prop, values: defaultState }));
     } else {
-      toast.error(json.message)
+      toast.error(json.message);
     }
-  }
+  };
 
   return (
     <>
@@ -55,27 +55,21 @@ export default function PasswordComponent() {
                 type: "password",
                 name: "oldPassword",
                 label: "Old Password",
-                validations: [
-                  Validations.Required()
-                ]
+                validations: [Validations.Required()],
               },
               {
                 fieldType: "text",
                 type: "password",
                 name: "newPassword",
                 label: "New Password",
-                validations: [
-                  Validations.Required()
-                ]
+                validations: [Validations.Required()],
               },
               {
                 fieldType: "text",
                 type: "password",
                 name: "confirmPassword",
                 label: "Confirm New Password",
-                validations: [
-                  Validations.Required()
-                ]
+                validations: [Validations.Required()],
               },
             ]}
           />

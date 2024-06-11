@@ -1,7 +1,11 @@
 "use client";
 import { useState } from "react";
 import Confirm from "../general/popups/Confirm";
-import SidebarApp, { SidebarButton, SidebarMenu, SidebarTitle } from "../general/Sidebar";
+import SidebarApp, {
+  SidebarButton,
+  SidebarMenu,
+  SidebarTitle,
+} from "../general/Sidebar";
 import { onLogout } from "@/lib/utis/api";
 
 export default function TalentSidebar() {
@@ -10,11 +14,24 @@ export default function TalentSidebar() {
     <>
       <SidebarApp>
         <SidebarTitle label="Selamat Datang Talent," />
-        <SidebarMenu label="Settings" href="/talent/settings" icon="/images/admin/sidebar/settings.svg" type="image" />
+        <SidebarMenu
+          label="Settings"
+          href="/talent/settings"
+          icon="/images/admin/sidebar/settings.svg"
+          type="image"
+        />
         <hr />
-        <SidebarButton onClick={() => setConfirmLogout(!confirmLogout)} label="Logout" />
+        <SidebarButton
+          onClick={() => setConfirmLogout(!confirmLogout)}
+          label="Logout"
+        />
       </SidebarApp>
-      <Confirm text={"Apakah anda yakin ingin keluar ?"} onApprove={onLogout} active={confirmLogout} onCancel={setConfirmLogout} />
+      <Confirm
+        text={"Apakah anda yakin ingin keluar ?"}
+        onApprove={onLogout}
+        active={confirmLogout}
+        onCancel={setConfirmLogout}
+      />
     </>
-  )
+  );
 }

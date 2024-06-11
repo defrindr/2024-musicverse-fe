@@ -7,7 +7,11 @@ export const metadata: Metadata = {
   description: "Ubah Skill",
 };
 
-export default function CreateSkillCategory({ params }: { params: { id: number } }) {
+export default function CreateSkillCategory({
+  params,
+}: {
+  params: { id: number };
+}) {
   return (
     <>
       <Breadcrumb title="Ubah Skill" />
@@ -15,5 +19,5 @@ export default function CreateSkillCategory({ params }: { params: { id: number }
         <FormSkillCategory id={params.id} />
       </div>
     </>
-  )
+  );
 }

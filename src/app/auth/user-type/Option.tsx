@@ -3,7 +3,7 @@ export type OptionType = {
   description: string;
   icon: string;
   active?: boolean;
-  onSelect: () => void
+  onSelect: () => void;
 };
 
 export default function Option(props: OptionType) {

@@ -114,11 +114,14 @@ export default function Form({
   );
 
   return (
-    <form className="grid grid-cols-12 gap-3" onSubmit={HandleSubmit} ref={formRef}>
+    <form
+      className="grid grid-cols-12 gap-3"
+      onSubmit={HandleSubmit}
+      ref={formRef}
+    >
       {fields.map((field: FieldFormType) => {
         const { fieldType: type, value, validations, ...props } = field;
-
-        if (type === "dropdown")
+        if (type === "dropdown") {
           return (
             <DropdownInput
               value={state?.values?.[props.name] ?? value ?? ""}
@@ -132,7 +135,7 @@ export default function Form({
               {...(props as DropdownInputType)}
             />
           );
-        else if (type === "textarea")
+        } else if (type === "textarea")
           return (
             <TextAreaInput
               value={state?.values?.[props.name] ?? value ?? ""}

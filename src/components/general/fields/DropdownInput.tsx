@@ -62,16 +62,13 @@ export default function DropdownInput({
   const [filteredItems, setFilteredItems] = useState<DropdownItemsType[]>([]);
   let intervalRemoteSearch = React.useRef<NodeJS.Timeout | null>(null);
 
-  const valueElement = useMemo(
-    () => {
-      if (typeof window !== "undefined")
-        return document.querySelector(
-          `input[name=${props.name.replaceAll(".", "\\.")}]`,
-        )
-      return null
-    },
-    [props.name],
-  );
+  const valueElement = useMemo(() => {
+    if (typeof window !== "undefined")
+      return document.querySelector(
+        `input[name=${props.name.replaceAll(".", "\\.")}]`,
+      );
+    return null;
+  }, [props.name]);
   const HandleChangeVisibility = useCallback(
     () => setVisibility(!visibility),
     [setVisibility, visibility],
@@ -146,10 +143,11 @@ export default function DropdownInput({
   const InitialLoad = useCallback(
     async () => {
       const remoteItem = await FetchSourceItems();
+      setValue(remoteItem?.selected ?? null);
       setItems(remoteItem?.items ?? []);
       setFilteredItems(remoteItem?.items ?? []);
     }, // eslint-disable-next-line react-hooks/exhaustive-deps
-    [],
+    [props.value],
   );
 
   useEffect(
@@ -164,13 +162,26 @@ export default function DropdownInput({
     [],
   );
 
+  useEffect(() => {
+    if (source) {
+      console.log(source);
+      InitialLoad();
+    } else {
+      if (defaultItems) setFilteredItems(defaultItems);
+    }
+  }, [props.value]);
+
   return (
     <div className={`${span}`}>
       <div className={`flex flex-col justify-end h-full`}>
         <InputLabel name={props.name} label={label} />
         <div className="relative flex justify-center items-center">
           <InputIcon icon={icon} hasError={error} />
-          <input type="hidden" name={props.name} />
+          <input
+            type="hidden"
+            name={props.name}
+            defaultValue={value?.key ?? ""}
+          />
           <div
             onClick={HandleChangeVisibility}
             className={`text-white p-2 rounded-lg text-sm border-[1px] border-gray-300 flex justify-between items-center flex-1 outline-none bg-transparent w-full ${props.className ?? ""} ${error ? "border-red-400" : ""}`}

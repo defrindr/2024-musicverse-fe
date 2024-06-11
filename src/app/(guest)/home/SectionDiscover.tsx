@@ -1,4 +1,3 @@
-import Button from "@/components/guest/Button";
 import Title from "@/components/guest/Title";
 
 export default function SectionDiscover() {

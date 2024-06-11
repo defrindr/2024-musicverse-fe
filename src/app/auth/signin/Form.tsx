@@ -10,17 +10,17 @@ import App from "@/config/app";
 export default function FormSignin() {
   const [loading, setLoading] = useState(false);
   const [form, setForm] = useState({
-    username: '',
-    email: '',
-    password: '',
-    confirmPassword: ''
+    username: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
   });
 
-  const [agree, setAgree] = useState(false)
+  const [agree, setAgree] = useState(false);
 
   const setFormField = (e: ChangeEvent<HTMLInputElement>) => {
-    setForm((old) => ({ ...old, [e.target.name]: e.target.value }))
-  }
+    setForm((old) => ({ ...old, [e.target.name]: e.target.value }));
+  };
 
   const HandleSubmit = useCallback(
     (event: FormEvent<HTMLFormElement>) => {
@@ -29,15 +29,17 @@ export default function FormSignin() {
 
       if (!agree) {
         setLoading(false);
-        toast.error('Untuk dapat melakukan pendaftaran, Anda harus menyetujui ketentuan yang berlaku.');
+        toast.error(
+          "Untuk dapat melakukan pendaftaran, Anda harus menyetujui ketentuan yang berlaku.",
+        );
         return;
       }
 
       api({
-        path: '/auth/register',
-        method: 'post',
-        body: form
-      }).then(async res => {
+        path: "/auth/register",
+        method: "post",
+        body: form,
+      }).then(async (res) => {
         let json = await res.json();
         if (res.status !== 200) {
           toast.error(json.message);
@@ -45,12 +47,12 @@ export default function FormSignin() {
           return;
         }
 
-        setCookie(App.Cookie.Auth.Token, json.data.accessToken)
-        setCookie(App.Cookie.Auth.ExpiredAt, json.data.expiredAt)
-        setCookie(App.Cookie.Auth.RedirectTo, json.data.redirectUrl)
-        setCookie(App.Cookie.Auth.User, JSON.stringify(json.data.user))
+        setCookie(App.Cookie.Auth.Token, json.data.accessToken);
+        setCookie(App.Cookie.Auth.ExpiredAt, json.data.expiredAt);
+        setCookie(App.Cookie.Auth.RedirectTo, json.data.redirectUrl);
+        setCookie(App.Cookie.Auth.User, JSON.stringify(json.data.user));
         window.location.href = window.location.origin + json.data.redirectUrl;
-      })
+      });
 
       setLoading(false);
       return false;
@@ -62,10 +64,36 @@ export default function FormSignin() {
     <div className="box-login">
       <form action={`#`} className="form" onSubmit={HandleSubmit}>
         <span className="title">We Helps You Create Amazing Music!</span>
-        <Input required onChange={setFormField} name="name" type="text" placeholder="Your Name" />
-        <Input required onChange={setFormField} name="email" type="email" placeholder="Enter Email" />
-        <Input min={6} required onChange={setFormField} name="password" placeholder="Password" password />
-        <Input min={6} required onChange={setFormField} name="confirmPassword" placeholder="Confirm Password" password />
+        <Input
+          required
+          onChange={setFormField}
+          name="name"
+          type="text"
+          placeholder="Your Name"
+        />
+        <Input
+          required
+          onChange={setFormField}
+          name="email"
+          type="email"
+          placeholder="Enter Email"
+        />
+        <Input
+          min={6}
+          required
+          onChange={setFormField}
+          name="password"
+          placeholder="Password"
+          password
+        />
+        <Input
+          min={6}
+          required
+          onChange={setFormField}
+          name="confirmPassword"
+          placeholder="Confirm Password"
+          password
+        />
         <div className="flex gap-4">
           <input onChange={() => setAgree(() => !agree)} type="checkbox" />
           <span>

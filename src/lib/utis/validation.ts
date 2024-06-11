@@ -8,8 +8,8 @@ export const Validations = {
     return {
       rule: (text: string = "") => {
         if (text === null) text = "";
-        text = String(text)
-        
+        text = String(text);
+
         let regExp = new RegExp("^(?!\\s*$).+");
         let validationResult = text.match(regExp);
 

@@ -3,8 +3,8 @@
 import Link from "next/link";
 import React, { ChangeEvent, useCallback, useRef, useState } from "react";
 
-type DatatableDataType = {
-  items: any;
+export type DatatableDataType<T = any> = {
+  items: T;
   meta?: {
     currentPage: number;
     total: number;
@@ -23,6 +23,7 @@ type DatatableType = {
   headStyle?: string;
   EmptyListText?: string;
   actionButtonHref?: string | null;
+  delay?: number;
   actionColumn?: (item: any) => React.ReactNode;
   changeRequest: (param: any) => void;
   fields: {
@@ -76,7 +77,7 @@ const PaginationComponent = ({ meta, search, changeRequest }: any) => {
   );
 };
 
-const SearchComponent = ({ changeRequest, setSearch }: any) => {
+const SearchComponent = ({ changeRequest, setSearch, delay }: any) => {
   const SearchRef = useRef<NodeJS.Timeout | null>(null);
 
   const HandleChangeInput = useCallback(
@@ -85,7 +86,7 @@ const SearchComponent = ({ changeRequest, setSearch }: any) => {
       SearchRef.current = setTimeout(() => {
         changeRequest({ search: event.target.value, page: 1 });
         setSearch(event.target.value);
-      }, 1500);
+      }, delay);
     },
     [setSearch, changeRequest],
   );
@@ -115,6 +116,7 @@ export default function Datatable({
   EmptyListText = "Data tidak tersedia",
   index = true,
   searchable = false,
+  delay = 1500,
 }: DatatableType) {
   if (!data) return <></>;
 
@@ -146,6 +148,7 @@ export default function Datatable({
           <SearchComponent
             changeRequest={changeRequest}
             setSearch={setSearch}
+            delay={delay}
           />
         ) : (
           <div className="col-span-2 md:col-span-1" />
@@ -196,23 +199,30 @@ export default function Datatable({
               </tr>
             </thead>
             <tbody className="bg-transparent gap-5">
-              {
-                data.items.length === 0 &&
+              {data.items.length === 0 && (
                 <tr>
-                  <td colSpan={fields.length + (index ? 1 : 0) + (actionColumn ? 1 : 0)} className="text-white text-center">
+                  <td
+                    colSpan={
+                      fields.length + (index ? 1 : 0) + (actionColumn ? 1 : 0)
+                    }
+                    className="text-white text-center"
+                  >
                     {EmptyListText}
                   </td>
                 </tr>
-              }
+              )}
               {data.items.map((row: any, indexRow: number) => {
                 return (
                   <tr key={indexRow} className={rowStyle}>
                     {index && (
-                      <td key={"index"} className="p-1 lg:p-4 lg:pl-8 text-white">
+                      <td
+                        key={"index"}
+                        className="p-1 lg:p-4 lg:pl-8 text-white"
+                      >
                         {indexRow +
                           1 +
                           (data.meta?.perPage ?? 0) *
-                          ((data.meta?.currentPage ?? 1) - 1)}
+                            ((data.meta?.currentPage ?? 1) - 1)}
                       </td>
                     )}
                     {fields.map((field, indexField) => {
@@ -220,7 +230,8 @@ export default function Datatable({
                         <td
                           key={indexField}
                           className={
-                            "p-1 lg:p-4 lg:pl-8 text-white " + (field.className ?? "")
+                            "p-1 lg:p-4 lg:pl-8 text-white " +
+                            (field.className ?? "")
                           }
                         >
                           {field.value(row)}
@@ -228,7 +239,10 @@ export default function Datatable({
                       );
                     })}
                     {actionColumn && (
-                      <td key={"actionColumn"} className="p-1 lg:p-4 lg:pl-8 text-white">
+                      <td
+                        key={"actionColumn"}
+                        className="p-1 lg:p-4 lg:pl-8 text-white"
+                      >
                         {actionColumn(row)}
                       </td>
                     )}

@@ -38,7 +38,13 @@ const ItemQuestion = ({
               : "opacity-100 h-0 absolute top-0 transition-all"
           }
         >
-          <span className={active ? 'text-white transition-all' : 'text-transparent transition-all'}>
+          <span
+            className={
+              active
+                ? "text-white transition-all"
+                : "text-transparent transition-all"
+            }
+          >
             {answers}
           </span>
         </p>

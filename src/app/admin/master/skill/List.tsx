@@ -1,81 +1,88 @@
 "use client";
 
-import Datatable from "@/components/general/datatable/page";
+import Datatable, {
+  DatatableDataType,
+} from "@/components/general/datatable/page";
 import Confirm from "@/components/general/popups/Confirm";
 import { api } from "@/lib/utis/api";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import QueryString from "qs";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
 type ISkill = {
   name: string;
-  icon: string
-}
+  icon: string;
+};
 
 export default function List() {
   const router = useRouter();
-  const [items, setItems] = useState<ISkill[]>([]);
+  const [data, setData] = useState<DatatableDataType<ISkill[]>>({
+    items: [],
+  });
   const [popup, setPopup] = useState(false);
   const [selected, setSelected] = useState<{
-    id: number
-  } | null>(null)
+    id: number;
+  } | null>(null);
 
-  const fetchedItems = async () => {
+  const fetchedData = async (params: any = {}) => {
     const res = await api({
-      path: '/auditions/skill-category'
+      path: "/auditions/skill-category?" + QueryString.stringify(params),
     });
     const json = await res.json();
 
     if (res.ok) {
-      setItems(() => json.data.items)
+      setData(() => json.data);
     }
-  }
+  };
 
   const HandleDelete = async () => {
     if (!selected) return;
     const res = await api({
       path: `/auditions/skill-category/${selected.id}`,
-      method: 'delete'
+      method: "delete",
     });
     const json = await res.json();
 
     if (!res.ok) {
-      toast.error(json.message)
+      toast.error(json.message);
       return;
     }
 
     closeModalDelete();
-    toast.success(json.message)
-    fetchedItems();
-  }
+    toast.success(json.message);
+    fetchedData();
+  };
 
   const openModalDelete = (item: any) => {
     setPopup(true);
     setSelected(item);
-  }
+  };
 
   const closeModalDelete = () => {
     setPopup(false);
-    setSelected(null)
-  }
+    setSelected(null);
+  };
 
   useEffect(() => {
-    fetchedItems();
-  }, [])
+    fetchedData();
+  }, []);
 
   return (
     <>
       <Datatable
         index
-        actionButtonHref='/admin/master/skill/create'
-        data={{ items }}
+        searchable
+        delay={500}
+        actionButtonHref="/admin/master/skill/create"
+        data={data}
         fields={[
           {
             label: "name",
             value: function (item: ISkill) {
-              return item.name
-            }
+              return item.name;
+            },
           },
           {
             label: "Ikon",
@@ -85,28 +92,22 @@ export default function List() {
                 <>
                   <img src={item.icon} className="w-auto h-[50px]" />
                 </>
-              )
-            }
-          }
+              );
+            },
+          },
         ]}
-
-        changeRequest={function (param: {}): void {
-          console.log('trigger changeRequest')
-        }}
-
+        changeRequest={fetchedData}
         actionColumn={(item) => {
-          return <>
-            <Link href={`/admin/master/skill/${item.id}`}>
-              <span className="material-icons text-white">
-                edit
-              </span>
-            </Link>
-            <button onClick={() => openModalDelete(item)}>
-              <span className="material-icons text-red-600">
-                delete
-              </span>
-            </button>
-          </>;
+          return (
+            <>
+              <Link href={`/admin/master/skill/${item.id}`}>
+                <span className="material-icons text-white">edit</span>
+              </Link>
+              <button onClick={() => openModalDelete(item)}>
+                <span className="material-icons text-red-600">delete</span>
+              </button>
+            </>
+          );
         }}
       />
 
@@ -114,7 +115,8 @@ export default function List() {
         text={"Yakin ingin menghapus data ini ?"}
         onCancel={() => closeModalDelete()}
         onApprove={HandleDelete}
-        active={popup} />
+        active={popup}
+      />
     </>
-  )
+  );
 }

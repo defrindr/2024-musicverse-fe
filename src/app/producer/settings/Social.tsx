@@ -5,47 +5,48 @@ import { api } from "@/lib/utis/api";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
-
-type AllowedType = 'instagram' | 'soundcloud' | 'youtube' | 'tiktok' | 'website';
+type AllowedType =
+  | "instagram"
+  | "soundcloud"
+  | "youtube"
+  | "tiktok"
+  | "website";
 type IResponse = {
   [key in AllowedType]: string;
 };
 
 type IPayload = {
-  name: AllowedType,
-  value: string
-}
-
+  name: AllowedType;
+  value: string;
+};
 
 export default function SocialComponent() {
   const SocialState = useState<{
-    values: IResponse
+    values: IResponse;
   }>({
     values: {
-      instagram: '',
-      soundcloud: '',
-      youtube: '',
-      tiktok: '',
-      website: ''
-    }
+      instagram: "",
+      soundcloud: "",
+      youtube: "",
+      tiktok: "",
+      website: "",
+    },
   });
   const setSocialLinks = (obj: IResponse) => {
     SocialState[1]((prop) => ({ ...prop, values: { ...obj } }));
-  }
+  };
 
   const fetchedSocials = async () => {
     let res = await api({
-      path: '/auth/socials',
-    })
-    let json = await res.json()
-    setSocialLinks(json.data.socials)
-  }
+      path: "/auth/socials",
+    });
+    let json = await res.json();
+    setSocialLinks(json.data.socials);
+  };
 
   useEffect(() => {
     fetchedSocials();
-  }, [])
-
-
+  }, []);
 
   const HandleSubmit = async () => {
     let socials: IPayload[] = [];
@@ -55,27 +56,24 @@ export default function SocialComponent() {
     for (let i = 0; i < keys.length; i++) {
       socials.push({
         name: keys[i],
-        value: SocialState[0].values[keys[i]]
-      })
+        value: SocialState[0].values[keys[i]],
+      });
     }
-
 
     let res = await api({
-      path: '/auth/socials',
-      method: 'post',
-      body: { socials }
-    })
+      path: "/auth/socials",
+      method: "post",
+      body: { socials },
+    });
 
-    let json = await res.json()
+    let json = await res.json();
 
     if (res.ok) {
-      toast.success(json.message)
+      toast.success(json.message);
     } else {
-      toast.error(json.message)
+      toast.error(json.message);
     }
-  }
-
-
+  };
 
   return (
     <>

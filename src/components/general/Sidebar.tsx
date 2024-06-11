@@ -2,7 +2,7 @@
 
 import App from "@/config/app";
 import Link from "next/link";
-import React, { MouseEventHandler } from "react";
+import React, { MouseEventHandler, useEffect, useState } from "react";
 import { getCookie, setCookie } from "typescript-cookie";
 
 interface SidebarAppProps {
@@ -15,23 +15,23 @@ export const ActionSidebarCollapse = () => {
   if (sidebarWrapper?.classList.contains("sidebar-collapse")) {
     sidebarWrapper?.classList.remove("sidebar-collapse");
     if (typeof window !== "undefined") {
-      setCookie(App.Cookie.View.SidebarCollapse, false)
+      setCookie(App.Cookie.View.SidebarCollapse, false);
     }
   } else {
     sidebarWrapper?.classList.add("sidebar-collapse");
     if (typeof window !== "undefined") {
-      setCookie(App.Cookie.View.SidebarCollapse, true)
+      setCookie(App.Cookie.View.SidebarCollapse, true);
     }
   }
 };
 
 export default function SidebarApp({ children }: SidebarAppProps) {
-  let collapse;
-  if (typeof window !== "undefined") {
-    collapse = getCookie(App.Cookie.View.SidebarCollapse) === "true";
-  } else {
-    collapse = false;
-  }
+  const [collapse, setCollapse] = useState(false);
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      setCollapse(getCookie(App.Cookie.View.SidebarCollapse) === "true");
+    }
+  }, []);
   return (
     <div id="sidebar-wrapper" className={collapse ? "sidebar-collapse" : ""}>
       <button className="sidebar-close-button" onClick={ActionSidebarCollapse}>
@@ -60,20 +60,21 @@ export const SidebarTitle = ({ label }: { label: string }) => (
 export const SidebarMenu = ({
   label,
   icon,
-  type = 'material',
+  type = "material",
   href,
 }: {
   label: string;
   icon: string;
-  type?: 'image' | 'material'
+  type?: "image" | "material";
   href: string;
 }) => (
   <li className="sidebar-menu">
     <Link href={href}>
-      {type === 'material' ?
+      {type === "material" ? (
         <span className="material-icons">{icon}</span>
-        :
-        <img src={icon} alt={`icon ${label}`} />}
+      ) : (
+        <img src={icon} alt={`icon ${label}`} />
+      )}
 
       <span>{label}</span>
     </Link>
@@ -121,9 +122,15 @@ export const SidebarCopyright = ({ text }: { text: string }) => {
       <span className="sidebar-copyright">&copy; {text}</span>
     </li>
   );
-}
+};
 
-export const SidebarButton = ({ onClick, label }: { onClick: MouseEventHandler<HTMLButtonElement>; label: string }) => {
+export const SidebarButton = ({
+  onClick,
+  label,
+}: {
+  onClick: MouseEventHandler<HTMLButtonElement>;
+  label: string;
+}) => {
   return (
     <li>
       <button onClick={onClick} className="sidebar-link">
@@ -131,4 +138,4 @@ export const SidebarButton = ({ onClick, label }: { onClick: MouseEventHandler<H
       </button>
     </li>
   );
-}
+};
