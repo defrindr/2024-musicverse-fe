@@ -2,6 +2,7 @@
 import Modal from "@/components/general/popups/Modal";
 import { api } from "@/lib/utis/api";
 import { Audition } from "@/lib/utis/types/response";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 export default function DetailInformation({ id }: { id: number }) {
@@ -37,6 +38,14 @@ export default function DetailInformation({ id }: { id: number }) {
 
   return (
     <div>
+      <div className="mb-4 flex">
+        <Link
+          href={`/producer/audition/${id}/edit`}
+          className="py-2 px-4 rounded-lg bg-primary text-white flex items-center justify-center"
+        >
+          <span className="material-icons me-3">edit</span> Edit
+        </Link>
+      </div>
       <span className="block font-light text-white">Audition Title: </span>
       <span className="block font-bold text-white text-[24px] leading-[32px] mb-8 mt-1">
         {item.title}

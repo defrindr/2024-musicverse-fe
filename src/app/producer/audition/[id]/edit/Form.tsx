@@ -14,14 +14,7 @@ export default function AuditionEditForm({ id }: { id: number }) {
   const FormState = useState<{
     values: any;
   }>({
-    values: {
-      title: "",
-      skill_id: "",
-      date: "",
-      description: "",
-      term: null,
-      contract: null,
-    },
+    values: {},
   });
 
   const HandleSubmit = async () => {
@@ -61,6 +54,17 @@ export default function AuditionEditForm({ id }: { id: number }) {
 
   return (
     <>
+      <>
+        <button
+          onClick={() => {
+            router.back();
+            router.refresh();
+          }}
+          className="py-2 px-8 bg-slate-500 mb-5 text-black rounded-full flex items-end gap-2 self-end font-semibold"
+        >
+          <span>Kembali</span>
+        </button>
+      </>
       <Form
         formRef={formRef}
         onSubmit={HandleSubmit}

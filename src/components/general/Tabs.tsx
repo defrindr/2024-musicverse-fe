@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useCallback, useEffect, useMemo, useState } from "react";
+import { getCookie, setCookie } from "typescript-cookie";
 
 type TabsPageType = {
   title: string;
@@ -25,11 +26,11 @@ export default function Tabs(props: TabsType) {
     () => props.pages.map((page) => page.component),
     [props.pages],
   );
-  const [active, setActive] = useState<number>(0);
+  const [active, setActive] = useState<number | null>(null);
 
   const HandleChangeTab = useCallback(
     (index: number) => {
-      localStorage.setItem(keyId, index.toString());
+      setCookie(keyId, index.toString());
       setActive(index);
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -38,7 +39,7 @@ export default function Tabs(props: TabsType) {
 
   useEffect(
     () => {
-      let activeIndex: number = Number(localStorage.getItem(keyId)) ?? 0;
+      let activeIndex: number = Number(getCookie(keyId) ?? 0);
       setActive(activeIndex);
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -61,20 +62,16 @@ export default function Tabs(props: TabsType) {
         })}
       </ul>
       <div className="bg-transparent md:p-4">
-        {components.map((component, index) => {
-          if (index === active) {
-            return (
-              <div key={"component-" + index} className="block">
-                {component}
-              </div>
-            );
-          }
-          return (
-            <div key={"component-" + index} className="hidden">
-              {component}
-            </div>
-          );
-        })}
+        {active !== null &&
+          components.map((component, index) => {
+            if (index === active) {
+              return (
+                <div key={"component-" + index} className="block">
+                  {component}
+                </div>
+              );
+            }
+          })}
       </div>
     </div>
   );

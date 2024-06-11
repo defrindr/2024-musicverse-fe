@@ -1,7 +1,7 @@
 import Breadcrumb from "@/components/general/Breadcrumb";
 import Tabs from "@/components/general/Tabs";
-import DetailInformation from "./Detail";
 import { Metadata } from "next";
+import DetailInformation from "./Detail";
 
 export const metadata: Metadata = {
   title: "Detail Virtual Reality Auditions",
@@ -15,7 +15,7 @@ export default function DetailAuditionPage({
 }) {
   return (
     <>
-      <Breadcrumb title="Detail Auditions" />
+      <Breadcrumb title="Detail Audition" />
       <Tabs
         pages={[
           {

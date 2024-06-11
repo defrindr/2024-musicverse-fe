@@ -1,6 +1,6 @@
 import Breadcrumb from "@/components/general/Breadcrumb";
-import Tabs from "@/components/general/Tabs";
 import ProfileComponent from "./Profile";
+import Tabs from "@/components/general/Tabs";
 import PasswordComponent from "./Password";
 import SocialComponent from "./Social";
 
