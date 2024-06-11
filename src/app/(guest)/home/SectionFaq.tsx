@@ -1,6 +1,14 @@
 "use client";
 import Title from "@/components/guest/Title";
-import { Dispatch, SetStateAction, useCallback, useState } from "react";
+import {
+  Dispatch,
+  SetStateAction,
+  useCallback,
+  useContext,
+  useMemo,
+  useState,
+} from "react";
+import { GuestContext } from "./page";
 
 const ItemQuestion = ({
   active,
@@ -95,12 +103,30 @@ const Accordion = () => {
 };
 
 export default function SectionFaq() {
+  const { items } = useContext(GuestContext);
+
+  const secondTitle = useMemo(() => {
+    if (items["app.text.faq-title"]) {
+      let splitted = items["app.text.faq-title"].split("\n");
+      return splitted[splitted.length - 1] !== items["app.text.faq-title"]
+        ? splitted[splitted.length - 1]
+        : "";
+    }
+    return "";
+  }, [items["app.text.faq-title"]]);
+
+  const firstTitle = useMemo(() => {
+    if (items["app.text.faq-title"])
+      return items["app.text.faq-title"].replace(secondTitle, "");
+    return "";
+  }, [items["app.text.faq-title"], secondTitle]);
+
   return (
     <section id="section-faq">
       <div className="container">
         <Title
-          main="FAQ: Answers to Your "
-          second="Queries"
+          main={firstTitle}
+          second={secondTitle}
           className="mb-5 md:mb-12"
         />
         <Accordion />

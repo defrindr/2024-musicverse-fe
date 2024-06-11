@@ -1,13 +1,15 @@
 "use client";
 
-import { FormEvent, useState } from "react";
+import { FormEvent, useContext, useState } from "react";
 import Input from "./Input";
 import { api } from "@/lib/utis/api";
 import { setCookie } from "typescript-cookie";
 import App from "@/config/app";
 import { toast } from "react-toastify";
 import AuthButton from "@/components/auth/button";
+import { AuthContext } from "../layout";
 export default function FormLogin() {
+  const { items } = useContext(AuthContext);
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
   const [password, setPassword] = useState("");
@@ -44,7 +46,7 @@ export default function FormLogin() {
   return (
     <div className="box-login">
       <form className="form" onSubmit={onSubmitLogin}>
-        <span className="title">Login and Show Your Talent!</span>
+        <span className="title">{items["app.text.login-title"]}</span>
         <Input
           name="email"
           type="email"

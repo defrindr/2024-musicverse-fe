@@ -1,13 +1,21 @@
 "use client";
-import { ChangeEvent, FormEvent, useCallback, useState } from "react";
+import {
+  ChangeEvent,
+  FormEvent,
+  useCallback,
+  useContext,
+  useState,
+} from "react";
 import Input from "./Input";
 import AuthButton from "@/components/auth/button";
 import { toast } from "react-toastify";
 import { api } from "@/lib/utis/api";
 import { setCookie } from "typescript-cookie";
 import App from "@/config/app";
+import { AuthContext } from "../layout";
 
 export default function FormSignin() {
+  const { items } = useContext(AuthContext);
   const [loading, setLoading] = useState(false);
   const [form, setForm] = useState({
     username: "",
@@ -63,7 +71,7 @@ export default function FormSignin() {
   return (
     <div className="box-login">
       <form action={`#`} className="form" onSubmit={HandleSubmit}>
-        <span className="title">We Helps You Create Amazing Music!</span>
+        <span className="title">{items["app.text.signin-title"]}</span>
         <Input
           required
           onChange={setFormField}

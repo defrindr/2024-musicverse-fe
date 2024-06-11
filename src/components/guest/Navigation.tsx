@@ -1,4 +1,7 @@
+"use client";
+import { GuestContext } from "@/app/(guest)/home/page";
 import Link from "next/link";
+import { useContext } from "react";
 
 const NavigationItem = ({
   children,
@@ -19,6 +22,7 @@ const NavigationItem = ({
 };
 
 export default function Navigation() {
+  const { items } = useContext(GuestContext);
   const HandleShowNavigation = () => {
     let navigationMobile = document.getElementById("navigation-mobile");
     let navigationMobileClassList = navigationMobile?.classList;
@@ -36,7 +40,7 @@ export default function Navigation() {
       <div className="container flex p-5 pl-8 pr-8 justify-between items-center text-[#CCCCCC]">
         <div className="flex flex-row text-center items-center justify-center gap-5">
           <img
-            src="/images/guest/logo.png"
+            src={items["app.image.logo"] ?? "/images/guest/logo.png"}
             alt="Logo"
             className="w-[100px] h-auto"
           />
