@@ -63,9 +63,9 @@ const PaginationComponent = ({ meta, search, changeRequest }: any) => {
         <span className="material-icons text-white">arrow_left</span>
       </button>
       <div>
-        <span>{meta.currentPage}</span>
-        <span>/</span>
-        <span>{meta.totalPage}</span>
+        <span className="text-white">{meta.currentPage}</span>
+        <span className="text-white">/</span>
+        <span className="text-white">{meta.totalPage}</span>
       </div>
       <button
         onClick={HandleChangeToNextPage}
@@ -222,7 +222,7 @@ export default function Datatable({
                         {indexRow +
                           1 +
                           (data.meta?.perPage ?? 0) *
-                            ((data.meta?.currentPage ?? 1) - 1)}
+                          ((data.meta?.currentPage ?? 1) - 1)}
                       </td>
                     )}
                     {fields.map((field, indexField) => {

@@ -2,6 +2,7 @@ import Breadcrumb from "@/components/general/Breadcrumb";
 import Tabs from "@/components/general/Tabs";
 import { Metadata } from "next";
 import DetailInformation from "./Detail";
+import Assesments from "./Assesment";
 
 export const metadata: Metadata = {
   title: "Detail Virtual Reality Auditions",
@@ -24,7 +25,7 @@ export default function DetailAuditionPage({
           },
           {
             title: "Assesments",
-            component: <></>,
+            component: <Assesments id={params.id} />
           },
           {
             title: "Participants",

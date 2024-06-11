@@ -26,6 +26,14 @@ export interface Audition {
   _date: string;
 }
 
+export interface AuditionAssesment {
+  id: number;
+  audition_id: number;
+  assesment: string;
+  weight: number;
+  deleted_at: any;
+}
+
 export interface Skill {
   id: number;
   icon: string;
