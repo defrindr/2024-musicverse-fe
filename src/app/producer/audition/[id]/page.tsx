@@ -25,7 +25,7 @@ export default function DetailAuditionPage({
           },
           {
             title: "Assesments",
-            component: <Assesments id={params.id} />
+            component: <Assesments id={params.id} />,
           },
           {
             title: "Participants",

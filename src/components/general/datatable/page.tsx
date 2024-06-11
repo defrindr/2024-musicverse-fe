@@ -222,7 +222,7 @@ export default function Datatable({
                         {indexRow +
                           1 +
                           (data.meta?.perPage ?? 0) *
-                          ((data.meta?.currentPage ?? 1) - 1)}
+                            ((data.meta?.currentPage ?? 1) - 1)}
                       </td>
                     )}
                     {fields.map((field, indexField) => {

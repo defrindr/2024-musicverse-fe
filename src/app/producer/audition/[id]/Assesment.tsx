@@ -2,7 +2,11 @@
 import Datatable from "@/components/general/datatable/page";
 import Confirm from "@/components/general/popups/Confirm";
 import { api } from "@/lib/utis/api";
-import { AuditionAssesment, Response, ResponseData } from "@/lib/utis/types/response";
+import {
+  AuditionAssesment,
+  Response,
+  ResponseData,
+} from "@/lib/utis/types/response";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import QueryString from "qs";
@@ -17,16 +21,16 @@ export default function Assesments({ id }: { id: number }) {
       total: 0,
       perPage: 0,
       path: "",
-      totalPage: 0
-    }
+      totalPage: 0,
+    },
   });
   const [confirm, setConfirm] = useState(false);
   const [selected, setSelected] = useState<AuditionAssesment | null>(null);
 
   const fetchedItem = async (params: any = {}) => {
-
     const res = await api({
-      path: `/auditions/audition/${id}/assesment?` + QueryString.stringify(params),
+      path:
+        `/auditions/audition/${id}/assesment?` + QueryString.stringify(params),
     });
     const json = await res.json();
     setResponse(json.data);
@@ -35,18 +39,18 @@ export default function Assesments({ id }: { id: number }) {
   const openModal = (item: AuditionAssesment) => {
     setSelected(item);
     setConfirm(true);
-  }
+  };
 
   const closeModal = () => {
     setConfirm(false);
-  }
+  };
 
   const HandleDelete = async () => {
     if (!selected) return;
 
     const res = await api({
       path: `/auditions/audition/${id}/assesment/${selected?.id}`,
-      method: 'DELETE'
+      method: "DELETE",
     });
     const json = await res.json();
 
@@ -61,12 +65,11 @@ export default function Assesments({ id }: { id: number }) {
     closeModal();
     // reload item
     fetchedItem();
-
-  }
+  };
 
   useEffect(() => {
     fetchedItem();
-  }, [])
+  }, []);
 
   return (
     <>
@@ -87,25 +90,26 @@ export default function Assesments({ id }: { id: number }) {
                 <span className="material-icons text-red-600">delete</span>
               </button>
             </>
-          )
-        }
-        }
+          );
+        }}
         fields={[
           {
             label: "Nama Poin Assesment",
-            value: (item: AuditionAssesment) => item.assesment
+            value: (item: AuditionAssesment) => item.assesment,
           },
           {
             label: "Bobot Assesment",
-            value: (item: AuditionAssesment) => item.weight
+            value: (item: AuditionAssesment) => item.weight,
           },
         ]}
       />
 
-      <Confirm text="Yakin ingin menghapus data ini ?"
+      <Confirm
+        text="Yakin ingin menghapus data ini ?"
         onCancel={() => closeModal()}
         onApprove={() => HandleDelete()}
-        active={confirm} />
+        active={confirm}
+      />
     </>
-  )
+  );
 }

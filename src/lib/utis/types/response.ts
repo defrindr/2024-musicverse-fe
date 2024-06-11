@@ -40,6 +40,18 @@ export interface Skill {
   name: string;
 }
 
+export interface User {
+  id: number;
+  name: string;
+  email: string;
+  phone_number: string;
+  country: string;
+  role: string;
+  email_verified_at: string;
+  created_at: string;
+  updated_at: string;
+}
+
 export interface MetaPage {
   currentPage: number;
   total: number;
