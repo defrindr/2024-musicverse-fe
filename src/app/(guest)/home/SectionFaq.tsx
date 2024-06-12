@@ -65,7 +65,7 @@ const Accordion = () => {
   const [state, setState] = useState<number | null>(null);
   const { items } = useContext(GuestContext);
 
-  const questions = useMemo(() => items['faqs'], [items]);
+  const questions = useMemo(() => items["faqs"], [items]);
 
   const changeState = useCallback(
     (index: number) => {
@@ -77,15 +77,17 @@ const Accordion = () => {
 
   return (
     <div className="my-6 mx-3 bg-slate-800 p-4 rounded-md">
-      {questions.map((item: { question: string; answer: string }, index: number) => (
-        <ItemQuestion
-          key={index}
-          active={state === index}
-          question={item.question}
-          answers={item.answer}
-          fnClick={() => changeState(index)}
-        />
-      ))}
+      {questions.map(
+        (item: { question: string; answer: string }, index: number) => (
+          <ItemQuestion
+            key={index}
+            active={state === index}
+            question={item.question}
+            answers={item.answer}
+            fnClick={() => changeState(index)}
+          />
+        ),
+      )}
     </div>
   );
 };

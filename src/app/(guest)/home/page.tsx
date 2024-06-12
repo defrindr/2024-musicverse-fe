@@ -15,8 +15,8 @@ import { createContext } from "react";
 
 export const GuestContext = createContext<{ items: any }>({
   items: {
-    faqs: []
-  }
+    faqs: [],
+  },
 });
 
 export default function HomePage() {

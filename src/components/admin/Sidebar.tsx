@@ -23,6 +23,22 @@ export default function AdminSidebar() {
             icon="mic"
           />
           <SidebarMenu label="CMS" href="/admin/master/cms" icon="settings" />
+
+          <SidebarMenu
+            label="Language"
+            href="/admin/master/language"
+            icon="settings"
+          />
+          <SidebarMenu
+            label="Genre"
+            href="/admin/master/genre"
+            icon="settings"
+          />
+          <SidebarMenu
+            label="Country"
+            href="/admin/master/country"
+            icon="settings"
+          />
         </SidebarDropdown>
         <hr />
         <SidebarButton
