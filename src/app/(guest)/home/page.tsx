@@ -13,7 +13,11 @@ import { useContext, useEffect, useState } from "react";
 import { api } from "@/lib/utis/api";
 import { createContext } from "react";
 
-export const GuestContext = createContext<{ items: any }>({ items: {} });
+export const GuestContext = createContext<{ items: any }>({
+  items: {
+    faqs: []
+  }
+});
 
 export default function HomePage() {
   const [completed, setCompleted] = useState(false);

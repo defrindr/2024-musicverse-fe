@@ -4,6 +4,7 @@ import { Metadata } from "next";
 import Image from "./Image";
 import Redaksional from "./Redaksional";
 import CmsContextProvider from "./Context";
+import Faq from "./Faq";
 
 export const metadata: Metadata = {
   title: "Content Management Sistem",
@@ -24,6 +25,10 @@ export default function CmsPage() {
             {
               title: "Gambar",
               component: <Image />,
+            },
+            {
+              title: "FAQ",
+              component: <Faq />,
             },
           ]}
         />

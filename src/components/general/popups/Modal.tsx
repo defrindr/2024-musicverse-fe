@@ -3,10 +3,17 @@ import React from "react";
 type IModal = {
   active: boolean;
   footer?: React.ReactNode;
+  noFooter?: boolean;
   body?: React.ReactNode;
-};
+} & React.HTMLAttributes<HTMLDivElement>;
 
-export default function Modal({ active, footer, body }: IModal) {
+export default function Modal({
+  active,
+  footer,
+  noFooter = false,
+  body,
+  ...props
+}: IModal) {
   if (!active) return <></>;
 
   return (
@@ -19,7 +26,11 @@ export default function Modal({ active, footer, body }: IModal) {
           &#8203;
         </span>
         <div
-          className="inline-block align-center bg-black rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-full sm:w-auto"
+          {...props}
+          className={
+            "inline-block align-center bg-black rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-full sm:w-auto " +
+            props.className
+          }
           role="dialog"
           aria-modal="true"
           aria-labelledby="modal-headline"
@@ -27,7 +38,9 @@ export default function Modal({ active, footer, body }: IModal) {
           <div className="bg-black px-4 pt-5 pb-4 sm:p-6 sm:pb-4 text-white">
             {body}
           </div>
-          <div className="bg-[#333] px-4 py-3 text-right">{footer}</div>
+          {!noFooter && (
+            <div className="bg-[#333] px-4 py-3 text-right">{footer}</div>
+          )}
         </div>
       </div>
     </div>

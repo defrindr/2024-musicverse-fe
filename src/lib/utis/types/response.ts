@@ -52,6 +52,13 @@ export interface User {
   updated_at: string;
 }
 
+export interface IFaq {
+  id: number;
+  question: string;
+  answer: string;
+  deleted_at: any;
+}
+
 export interface MetaPage {
   currentPage: number;
   total: number;

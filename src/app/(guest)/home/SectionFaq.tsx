@@ -63,21 +63,9 @@ const ItemQuestion = ({
 
 const Accordion = () => {
   const [state, setState] = useState<number | null>(null);
+  const { items } = useContext(GuestContext);
 
-  const questions = [
-    {
-      question: "Question 1 ?",
-      answers: `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing.`,
-    },
-    {
-      question: "Question 2 ?",
-      answers: `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing.`,
-    },
-    {
-      question: "Question 3 ?",
-      answers: `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing.`,
-    },
-  ];
+  const questions = useMemo(() => items['faqs'], [items]);
 
   const changeState = useCallback(
     (index: number) => {
@@ -89,12 +77,12 @@ const Accordion = () => {
 
   return (
     <div className="my-6 mx-3 bg-slate-800 p-4 rounded-md">
-      {questions.map((item, index) => (
+      {questions.map((item: { question: string; answer: string }, index: number) => (
         <ItemQuestion
           key={index}
           active={state === index}
           question={item.question}
-          answers={item.answers}
+          answers={item.answer}
           fnClick={() => changeState(index)}
         />
       ))}
