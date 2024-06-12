@@ -22,6 +22,7 @@ export default function AdminSidebar() {
             href="/admin/master/skill"
             icon="mic"
           />
+          <SidebarMenu label="CMS" href="/admin/master/cms" icon="settings" />
         </SidebarDropdown>
         <hr />
         <SidebarButton

@@ -139,7 +139,7 @@ const FilePreview = ({ withPreview, files, preview }: FilePreviewType) => {
   }
 
   return (
-    <div className="w-full min-h-[200px] border-[1px] p-5 mb-2 rounded-lg flex justify-center items-center flex-wrap">
+    <div className="w-full min-h-[300px] border-[1px] p-5 mb-2 rounded-lg flex justify-center items-center flex-wrap">
       {displayView}
     </div>
   );
@@ -153,7 +153,11 @@ const ImagePreview = ({
   alt?: string;
 }) => {
   return (
-    <img src={url} className="w-auto max-h-[200px] rounded-sm m-2" alt={alt} />
+    <img
+      src={url}
+      className="w-auto max-h-[200px] max-w-[200px] rounded-sm m-2"
+      alt={alt}
+    />
   );
 };
 

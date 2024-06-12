@@ -42,7 +42,7 @@ export default function Navigation() {
           <img
             src={items["app.image.logo"] ?? "/images/guest/logo.png"}
             alt="Logo"
-            className="w-[100px] h-auto"
+            className="w-[100px] max-h-[60px] h-auto"
           />
           <div className="hidden lg:block">
             <ul className="flex gap-10">
