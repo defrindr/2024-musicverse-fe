@@ -42,7 +42,7 @@ export default function Redaksional() {
       });
     }
     const res = await api({
-      path: "/web-config",
+      path: "/cms/config",
       method: "put",
       body: { items },
     });

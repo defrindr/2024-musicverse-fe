@@ -43,7 +43,7 @@ export default function Image() {
       body.append(`image[${keyIndex}][value]`, FormState.values[key]);
     }
     const res = await api({
-      path: "/web-config/image",
+      path: "/cms/config/image",
       method: "post",
       body,
     });

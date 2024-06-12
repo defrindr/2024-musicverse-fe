@@ -15,11 +15,14 @@ export default function CmsContextProvider({
 }: {
   children: ReactNode;
 }) {
-  const [items, setItems] = useState({});
+  const [items, setItems] = useState({
+    texts: [],
+    images: [],
+  });
 
   const updateItems = async () => {
     const res = await api({
-      path: "/web-config",
+      path: "/cms/config",
     });
     const json = await res.json();
     setItems(json.data);
