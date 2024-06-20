@@ -15,6 +15,12 @@ export default function TalentSidebar() {
       <SidebarApp>
         <SidebarTitle label="Selamat Datang Talent," />
         <SidebarMenu
+          label="Metaverse"
+          href="/talent/vr"
+          icon="/images/admin/sidebar/metaverse.svg"
+          type="image"
+        />
+        <SidebarMenu
           label="Settings"
           href="/talent/settings"
           icon="/images/admin/sidebar/settings.svg"

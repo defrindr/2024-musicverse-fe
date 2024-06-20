@@ -50,7 +50,7 @@ export default function DropdownInput({
   span = "col-span-12",
   error,
   items: defaultItems,
-  source = "",
+  source,
   remoteDelay = 1500,
   placeholder = "-- Pilih --",
   onChange,

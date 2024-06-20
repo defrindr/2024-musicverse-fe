@@ -52,7 +52,7 @@ export const api: typeApi = async ({
    */
   try {
     const userToken = getCookie(App.Cookie.Auth.Token);
-    console.log(userToken);
+    // console.log(userToken);
     headers["Authorization"] = `Bearer ${userToken}`;
   } catch (error) {}
 
@@ -81,7 +81,10 @@ export const api: typeApi = async ({
     /**
      * Check unauthed
      */
-    if (res.status == 401) onLogout();
+    if (res.status == 401) {
+      console.log(res.json)
+      onLogout();
+    }
 
     // /**
     //  * Caching data
