@@ -2,9 +2,10 @@
 import BlockLoading from "@/components/general/popups/BlockLoading";
 import Confirm from "@/components/general/popups/Confirm";
 import Modal from "@/components/general/popups/Modal";
+import App from "@/config/app";
 import { api } from "@/lib/utis/api";
-import { Audition } from "@/lib/utis/types/response";
-import Link from "next/link";
+import { Audition, AuditionParticipant } from "@/lib/utis/types/response";
+import QueryString from "qs";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
@@ -13,6 +14,13 @@ export default function DetailInformation({ id }: { id: number }) {
   const [popupPendaftaran, setPopupPendaftaran] = useState<boolean>(false);
   const [loading, setLoading] = useState(false);
   const [modal, setModal] = useState(false);
+  const [apply, setApply] = useState<{
+    status: boolean,
+    data: AuditionParticipant | null
+  }>({
+    status: false,
+    data: null
+  });
   const [pdf, setPdf] = useState("");
 
   const fetchedItem = async () => {
@@ -22,6 +30,16 @@ export default function DetailInformation({ id }: { id: number }) {
     const json = await res.json();
 
     setItem(json.data);
+  };
+
+  const checkApply = async () => {
+    const res = await api({
+      path: `/auditions/audition/${id}/participant/registered`,
+      method: 'post'
+    });
+    const json = await res.json();
+
+    setApply(json.data);
   };
 
   const openPdf = (pdfLink: string) => {
@@ -35,21 +53,25 @@ export default function DetailInformation({ id }: { id: number }) {
 
   useEffect(() => {
     fetchedItem();
+    checkApply();
   }, []);
 
   const HandleApplyAudition = async () => {
     setLoading(true);
     const res = await api({
-      path: `/auditions/audition/${id}/apply`,
+      path: `/auditions/audition/${id}/participant/apply`,
       method: 'post'
     });
     const json = await res.json();
 
     if (res.ok) {
+      checkApply();
+      setPopupPendaftaran(false);
       toast.success(json.message);
     } else {
       toast.error(json.message);
     }
+
     setLoading(false)
   }
 
@@ -105,12 +127,33 @@ export default function DetailInformation({ id }: { id: number }) {
         {item.description}
       </span>
 
-      <button className="bg-primary p-2 px-6 rounded-lg text-white" onClick={() => setPopupPendaftaran(true)}>
-        Ajukan pendaftaran
-      </button>
+      {
+        apply.data?.status === "auditions" ?
+
+          <a href={App.StreamerUrl + "?" + QueryString.stringify({
+            room: apply.data?.room,
+            name: apply.data?.participant?.name
+          })} target="_blank"  className="bg-green-500 p-2 px-6 rounded-lg text-white" >
+            Join Room
+          </a>
+          :
+          (!apply.status ?
+            <button className="bg-primary p-2 px-6 rounded-lg text-white" onClick={() => setPopupPendaftaran(true)}>
+              Ajukan pendaftaran
+            </button> :
+            <button className="bg-red-700 p-2 px-6 rounded-lg text-white" onClick={() => setPopupPendaftaran(true)}>
+              Batalkan pendaftaran
+            </button>)
+      }
 
       <Confirm
         text="Apakah anda yakin ingin mendaftar pada audisi ini ?"
+        onApprove={HandleApplyAudition}
+        onCancel={(val) => setPopupPendaftaran(val)}
+        active={popupPendaftaran}
+      />
+      <Confirm
+        text="Apakah anda yakin ingin membatalkan pendaftaran pada audisi ini ?"
         onApprove={HandleApplyAudition}
         onCancel={(val) => setPopupPendaftaran(val)}
         active={popupPendaftaran}

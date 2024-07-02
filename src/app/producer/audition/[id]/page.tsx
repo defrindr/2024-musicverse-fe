@@ -3,6 +3,7 @@ import Tabs from "@/components/general/Tabs";
 import { Metadata } from "next";
 import DetailInformation from "./Detail";
 import Assesments from "./Assesment";
+import Participants from "./Participant";
 
 export const metadata: Metadata = {
   title: "Detail Virtual Reality Auditions",
@@ -29,7 +30,7 @@ export default function DetailAuditionPage({
           },
           {
             title: "Participants",
-            component: <></>,
+            component: <Participants id={params.id} />,
           },
         ]}
         id={"detail-audition"}

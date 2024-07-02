@@ -34,6 +34,18 @@ export interface AuditionAssesment {
   deleted_at: any;
 }
 
+export interface AuditionParticipant {
+  id: number;
+  audition_id: number;
+  participant_id: number;
+  status: "registration" | "auditions" | "contract";
+  room: null | string;
+  total_point: number;
+  rank: null | number;
+  deleted_at: any;
+  participant: User | null
+}
+
 export interface Skill {
   id: number;
   icon: string;

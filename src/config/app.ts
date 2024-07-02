@@ -1,5 +1,6 @@
 const App = {
   Url: process.env.NEXT_PUBLIC_BACKEND_API,
+  StreamerUrl: process.env.NEXT_PUBLIC_STREAMER_URL,
   Domain: process.env.NEXT_PUBLIC_BACKEND_DOMAIN,
   Cookie: {
     Auth: {
